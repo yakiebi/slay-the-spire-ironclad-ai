@@ -15,7 +15,9 @@ The full interactive experiment site (with Chart.js visualizations, sortable/fil
 
 ## 📊 Google Sheets & CSV Spreadsheets
 
-All telemetry extracted from the 21 `.run` history files is available in [`data/`](data/) and [`docs/data/`](docs/data/):
+- **Live Google Spreadsheet (in Google Drive)**: [Slay the Spire — Ironclad AI Experiment Telemetry (21 Runs)](https://docs.google.com/spreadsheets/d/1QaTf-T1JtgsI-HPnWZleRwBCAV4ktXWXr7AtER40xrI/edit)
+
+All telemetry extracted from the 21 `.run` history files is also available in [`data/`](data/) and [`docs/data/`](docs/data/):
 
 1. **[`slay_the_spire_ironclad_experiment.xlsx`](data/slay_the_spire_ironclad_experiment.xlsx)** — Multi-tab OpenXML workbook ready to upload directly to **Google Sheets** (`File → Import → Upload`), containing all 6 tabs below with frozen headers:
    - **Tab 1 — [`runs_summary.csv`](data/runs_summary.csv)**: All 21 runs (`Run_Number`, `Iteration`, `Phase`, `Floor_Reached`, `Outcome`, `Killed_By`, `Playtime_Sec`, `Playtime_MMSS`, `Score`, `Boss_Relics`, `Cards_Picked`, `Cards_Skipped`, `Card_Pick_Rate_Pct`, `Total_Combat_Damage_Taken`).
