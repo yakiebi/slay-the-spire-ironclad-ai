@@ -6,6 +6,8 @@ An in-process Java instrumentation agent (`StsObserverAgent`) and autonomous Pyt
 
 ## 🌐 GitHub Pages Interactive Dashboard
 
+- **Live GitHub Pages URL**: [https://yakiebi.github.io/slay-the-spire-ironclad-ai/](https://yakiebi.github.io/slay-the-spire-ironclad-ai/)
+
 The full interactive experiment site (with Chart.js visualizations, sortable/filterable Google Sheets tables, one-click TSV clipboard export, and 1080p OpenGL screenshots) is located in [`docs/index.html`](docs/index.html).
 
 - **Local Preview**: Open [`docs/index.html`](docs/index.html) directly in any browser (zero server required), or run `python -m http.server 8080 --directory docs`.
