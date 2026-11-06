@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slay the Spire — Ironclad AI Experiment & Telemetry Report</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- HERO HEADER -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge-row">
+        <span class="badge badge-victory">● Victory Achieved (Floor 51)</span>
+        <span class="badge badge-ironclad">The Ironclad • Ascension 0</span>
+        <span class="badge badge-gold">21 Full Runs • 12 AI Iterations • 354 Combats</span>
+      </div>
+      <h1>Slay the Spire — Autonomous Ironclad AI Experiment</h1>
+      <p class="subtitle">
+        Complete telemetry, iterative engineering changelog, card pick-rate analytics, relic acquisition distributions, and combat performance across all <strong>21 runs</strong> (<code>v1.0</code> → <code>v2.3</code>), culminating in a <strong>13m 21s Speed Climber Victory</strong> (Score: <code>667</code>, Final HP: <code>71/93</code>) against <em>Donu and Deca</em>.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-sheets" href="data/slay_the_spire_ironclad_experiment.xlsx" download>
+          📊 Download Multi-Tab Google Sheets Workbook (.xlsx)
+        </a>
+        <a class="btn btn-primary" href="#spreadsheets">
+          📋 Open Interactive Spreadsheet &amp; TSV Copy
+        </a>
+        <a class="btn" href="data/runs_summary.csv" download>⬇ Runs CSV</a>
+        <a class="btn" href="data/card_pick_rates.csv" download>⬇ Card Pick Rates CSV</a>
+        <a class="btn" href="data/relics_obtained.csv" download>⬇ Relics CSV</a>
+        <a class="btn" href="data/iterations_changelog.csv" download>⬇ Iterations CSV</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- KPI SUMMARY CARDS -->
+    <section class="kpi-grid" id="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Total Runs &amp; Iterations</div>
+        <div class="kpi-value" id="kpi-runs">21 Runs</div>
+        <div class="kpi-sub">12 Engineering Iterations (v1.0 → v2.3)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Total Experiment Playtime</div>
+        <div class="kpi-value" id="kpi-time">4h 33m 50s</div>
+        <div class="kpi-sub">16,430s in-game time (Avg 13m 02s / run)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Phase 5 Endgame Consistency</div>
+        <div class="kpi-value">100% Act 3</div>
+        <div class="kpi-sub">3/4 Floor 50 Boss Reaches in Runs #18–#21</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Cards Evaluated / Picked</div>
+        <div class="kpi-value" id="kpi-cards">326 / 1,018</div>
+        <div class="kpi-sub">Across 340+ Card Reward &amp; Shop screens</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Winning Run (#21) Time</div>
+        <div class="kpi-value">13m 21s</div>
+        <div class="kpi-sub">Unlocked SPEED_CLIMBER (&lt;20m) Achievement!</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Winning Run (#21) Outcome</div>
+        <div class="kpi-value">71 / 93 HP</div>
+        <div class="kpi-sub">Score: 667 • Donu &amp; Deca Slain in 7 Turns</div>
+      </div>
+    </section>
+
+    <!-- CHARTS SECTION -->
+    <section class="section" id="charts">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">1. Experiment Progression, Card Pick Rates &amp; Relic Telemetry</h2>
+          <p class="section-subtitle">Interactive charts compiled from all 21 Slay the Spire <code>.run</code> telemetry files and bot logs.</p>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <!-- Chart 1: Floor Reached & Time Used Across All 21 Runs -->
+        <div class="chart-card col-12">
+          <h3>Floor Reached &amp; Playtime (Seconds) Across All 21 Runs (v1.0 → v2.3)</h3>
+          <p class="chart-desc">Bars show the highest floor reached in each run (Floor 16 = Act 1 Boss, Floor 33 = Act 2 Boss, Floor 50 = Act 3 Boss, Floor 51 = Victory!). The gold line tracks run duration in seconds.</p>
+          <div class="chart-wrapper">
+            <canvas id="runsProgressionChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 2: Top 22 Cards by Pick Rate & Volume -->
+        <div class="chart-card col-7">
+          <h3>Ironclad Card Pick Rate (%) vs. Times Offered (Top 22 Cards)</h3>
+          <p class="chart-desc">Comparison of reward pick rate (%) and offer frequency. Core scaling/exhaust engines (<em>Feel No Pain</em> 100%, <em>Shockwave</em> 76.5%, <em>Hemokinesis</em> 70.6%, <em>Heavy Blade</em> 64.5%) anchor the bot's draft priority.</p>
+          <div class="chart-wrapper-tall">
+            <canvas id="cardPickRateChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 3: Relics Obtained & Boss Relic Pick Rates -->
+        <div class="chart-card col-5">
+          <h3>Most Frequently Obtained Relics Across 21 Runs</h3>
+          <p class="chart-desc">Distribution of relics acquired via Neow, Elites, Chests, Events, Shops, and Boss chests.</p>
+          <div class="chart-wrapper-tall">
+            <canvas id="relicsChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 4: Winning Run #21 Floor-by-Floor HP, Max HP & Gold -->
+        <div class="chart-card col-7">
+          <h3>Winning Run (#21) Floor-by-Floor HP, Max HP &amp; Gold Trajectory (Floors 1–50)</h3>
+          <p class="chart-desc">Notice how <em>Forgotten Altar</em> (+5 Max HP) and <em>Feed</em> (+8 Max HP) scaled Max HP from 80 to 93, while <em>Snecko Eye + Corruption + Feel No Pain</em> kept HP near 100% throughout Act 3.</p>
+          <div class="chart-wrapper">
+            <canvas id="winningRunTrajectoryChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 5: Deadliest Enemy Encounters -->
+        <div class="chart-card col-5">
+          <h3>Deadliest Encounters: Average Damage Taken per Fight</h3>
+          <p class="chart-desc">Aggregated across 354 combat encounters. Bosses (<em>Time Eater</em>, <em>The Guardian</em>, <em>Awakened One</em>) and Elites (<em>Lagavulin</em>, <em>Book of Stabbing</em>, <em>Nemesis</em>) drove key AI iterations.</p>
+          <div class="chart-wrapper">
+            <canvas id="enemyDamageChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE AI STRATEGIES -->
+    <section class="section" id="strategies">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">2. Autonomous Ironclad Strategy Architecture</h2>
+          <p class="section-subtitle">How the in-process Java agent (<code>StsObserverAgent</code>) and Python heuristic planner (<code>play_ironclad.py</code>) make decisions.</p>
+        </div>
+      </div>
+
+      <div class="strategy-grid">
+        <div class="strategy-card">
+          <h4>1. Dynamic Deck Valuation &amp; Archetype Synergy</h4>
+          <p>Every card reward and shop screen is scored dynamically against the current Master Deck and Relic bar:</p>
+          <ul>
+            <li><strong>Exhaust &amp; Block Engine</strong>: High base priority on <code>Corruption</code> (88), <code>Feel No Pain</code> (87, 100% pick rate), <code>Shockwave</code> (88), <code>Shrug It Off</code> (79), and <code>Second Wind</code>.</li>
+            <li><strong>Strength Multipliers</strong>: When <code>Demon Form</code>, <code>Inflame</code>, <code>Spot Weakness</code>, or <code>Limit Break</code> is present, multi-hit attacks (<code>Twin Strike</code>, <code>Pummel</code>, <code>Sword Boomerang</code>, <code>Heavy Blade</code>) receive a <code>+15</code> synergy bonus.</li>
+            <li><strong>Anti-Bloat Soft Cap</strong>: Penalizes duplicate attacks and skips sub-threshold cards once deck size exceeds 22–28 cards.</li>
+          </ul>
+        </div>
+
+        <div class="strategy-card">
+          <h4>2. Combat Turn Sequencing &amp; Lethal Post-Scoring</h4>
+          <p>Each combat step evaluates all playable cards in hand using a 5-stage priority pipeline:</p>
+          <ul>
+            <li><strong>Stage 1 (0-Cost Setup &amp; Draw)</strong>: <code>Apotheosis</code> (400), <code>Offering</code> (320), <code>Armaments</code> (260), <code>Battle Trance</code> (250).</li>
+            <li><strong>Stage 2 (Powers &amp; Scaling)</strong>: <code>Corruption</code> (+75 with <code>Snecko Eye</code>), <code>Feel No Pain</code>, <code>Demon Form</code>, <code>Inflame</code>, <code>Spot Weakness</code>.</li>
+            <li><strong>Stage 3 (Debuffs Before Attacks)</strong>: Applies <code>Vulnerable</code>/<code>Weak</code>/<code>-Str</code> (<code>Shockwave</code>, <code>Disarm</code>, <code>Uppercut</code>, <code>Bash</code>, <code>Thunderclap</code>) before firing heavy attacks.</li>
+            <li><strong>Stage 4 &amp; 5 (Urgency-Weighted Block vs. Lethal Attacks)</strong>: Elevates Block skill urgency when <code>unblocked_dmg &gt;= 12</code> or in Boss rooms, while applying a universal <code>+360</code> lethal kill bonus (+250 extra for fatal <code>Feed</code>).</li>
+          </ul>
+        </div>
+
+        <div class="strategy-card">
+          <h4>3. Boss &amp; Elite Specific Counter-Heuristics</h4>
+          <p>Each loss in Runs #1–#20 produced targeted encounter rules:</p>
+          <ul>
+            <li><strong>Time Eater (Floor 50)</strong>: Never wastes attacks/debuffs into <code>Haste</code> (<code>BUFF</code> intent at &lt;228 HP); stops playing non-Powers at <code>6..8</code> on <code>Time Warp</code> when block is full, and pushes through <code>9..11</code> to reset the counter to <code>0/12</code>.</li>
+            <li><strong>Awakened One (Floor 50)</strong>: Suppresses minor Powers during Phase 1 so <code>Curiosity</code> does not buff enemy Strength.</li>
+            <li><strong>Nemesis &amp; Spiker (Act 3)</strong>: Caps expected attack damage to <code>1</code> per hit against <code>Intangible</code> enemies and blocks multi-hit suicide into <code>Thorns</code>.</li>
+            <li><strong>Slime Boss &amp; Lagavulin (Act 1)</strong>: Prioritizes Powers/setup before waking sleeping <code>Lagavulin</code>, and adds <code>+250</code> priority to split <code>Slime Boss</code> at <code>&lt;= 70 HP</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ITERATION CHANGELOG TIMELINE -->
+    <section class="section" id="iterations">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">3. Iterative Engineering Changelog (v1.0 → v2.3)</h2>
+          <p class="section-subtitle">What changed after each run, why previous iterations lost or got stuck, and how each fix improved floor progression.</p>
+        </div>
+      </div>
+      <div class="timeline" id="timeline-container"></div>
+    </section>
+
+    <!-- SPREADSHEET EXPLORER -->
+    <section class="section" id="spreadsheets">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">4. Google Sheets &amp; CSV Telemetry Explorer</h2>
+          <p class="section-subtitle">Browse all 6 datasets below, sort by any column, download the <code>.xlsx</code> workbook, or click <strong>Copy Tab for Google Sheets</strong> and press <code>Ctrl+V</code> directly in Google Sheets.</p>
+        </div>
+      </div>
+
+      <div class="sheet-box">
+        <div class="sheet-toolbar">
+          <div class="sheet-tabs" id="sheet-tabs">
+            <button class="tab-btn active" data-sheet="runs">1. Runs Summary (21)</button>
+            <button class="tab-btn" data-sheet="cards">2. Card Pick Rates (69)</button>
+            <button class="tab-btn" data-sheet="relics">3. Relics Obtained (63)</button>
+            <button class="tab-btn" data-sheet="iterations">4. AI Iterations (12)</button>
+            <button class="tab-btn" data-sheet="enemies">5. Enemy Damage Summary (37)</button>
+            <button class="tab-btn" data-sheet="combats">6. All Combat Encounters (354)</button>
+          </div>
+          <div class="sheet-controls">
+            <input type="text" id="table-search" class="search-input" placeholder="Search current sheet..." />
+            <button class="btn btn-sheets" id="copy-tsv-btn">📋 Copy Tab for Google Sheets (TSV)</button>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table" id="data-table">
+            <thead id="table-head"></thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREENSHOT GALLERY -->
+    <section class="section" id="gallery">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">5. Live 1080p OpenGL Framebuffer Captures (Winning Run #21)</h2>
+          <p class="section-subtitle">Captured directly from the LibGDX OpenGL framebuffer via <code>StsObserverAgent</code> during the winning 13m 21s run.</p>
+        </div>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <a href="assets/screenshots/03_neow_blessing.png" target="_blank"><img src="assets/screenshots/03_neow_blessing.png" alt="Floor 0 Neow Blessing" /></a>
+          <div class="gallery-caption"><strong>Floor 0 — Neow's Blessing</strong>: Choosing a random Common Relic (<em>War Paint</em>).</div>
+        </div>
+        <div class="gallery-item">
+          <a href="assets/screenshots/04_act1_first_combat.png" target="_blank"><img src="assets/screenshots/04_act1_first_combat.png" alt="Floor 1 Combat" /></a>
+          <div class="gallery-caption"><strong>Floor 1 — First Combat</strong>: Opening fight vs. Cultist with upgraded Defends.</div>
+        </div>
+        <div class="gallery-item">
+          <a href="assets/screenshots/act1_elite_floor7.png" target="_blank"><img src="assets/screenshots/act1_elite_floor7.png" alt="Floor 7 Lagavulin" /></a>
+          <div class="gallery-caption"><strong>Floor 7 — Act 1 Elite (Lagavulin)</strong>: Earning <em>Self-Forming Clay</em>.</div>
+        </div>
+        <div class="gallery-item">
+          <a href="assets/screenshots/act1_boss_relics.png" target="_blank"><img src="assets/screenshots/act1_boss_relics.png" alt="Floor 17 Boss Relic" /></a>
+          <div class="gallery-caption"><strong>Floor 17 — Act 1 Boss Chest</strong>: Picking <em>Snecko Eye</em> right after drafting <em>Corruption</em>!</div>
+        </div>
+        <div class="gallery-item">
+          <a href="assets/screenshots/act2_elite_floor23.png" target="_blank"><img src="assets/screenshots/act2_elite_floor23.png" alt="Floor 23 Book of Stabbing" /></a>
+          <div class="gallery-caption"><strong>Floor 23 — Act 2 Elite</strong>: Defeating <em>Book of Stabbing</em> in 5 turns.</div>
+        </div>
+        <div class="gallery-item">
+          <a href="assets/screenshots/act2_boss_floor33.png" target="_blank"><img src="assets/screenshots/act2_boss_floor33.png" alt="Floor 33 The Collector" /></a>
+          <div class="gallery-caption"><strong>Floor 33 — Act 2 Boss (The Collector)</strong>: Entering at 90/90 HP with 0-cost <em>Corruption</em>.</div>
+        </div>
+        <div class="gallery-item">
+          <a href="assets/screenshots/act2_boss_relics.png" target="_blank"><img src="assets/screenshots/act2_boss_relics.png" alt="Floor 34 Boss Relic" /></a>
+          <div class="gallery-caption"><strong>Floor 34 — Act 2 Boss Chest</strong>: Selecting <em>Cursed Key</em> (protected by <em>Omamori</em>).</div>
+        </div>
+        <div class="gallery-item">
+          <a href="assets/screenshots/act3_shop_floor36.png" target="_blank"><img src="assets/screenshots/act3_shop_floor36.png" alt="Floor 36 Shop" /></a>
+          <div class="gallery-caption"><strong>Floor 36 — Act 3 Shop</strong>: Purging 3rd <em>Strike</em> and purchasing <em>Bag of Preparation</em>.</div>
+        </div>
+        <div class="gallery-item">
+          <a href="assets/screenshots/act3_boss_floor50.png" target="_blank"><img src="assets/screenshots/act3_boss_floor50.png" alt="Floor 50 Donu and Deca" /></a>
+          <div class="gallery-caption"><strong>Floor 50 — Act 3 Boss (Donu &amp; Deca)</strong>: Entering at 93/93 HP; slaying Donu on Turn 2!</div>
+        </div>
+        <div class="gallery-item">
+          <a href="assets/screenshots/98_spire_heart_cutscene.png" target="_blank"><img src="assets/screenshots/98_spire_heart_cutscene.png" alt="Floor 51 Spire Heart" /></a>
+          <div class="gallery-caption"><strong>Floor 51 — The Heart of the Spire</strong>: Reaching the Spire Heart at 71/93 HP.</div>
+        </div>
+        <div class="gallery-item">
+          <a href="assets/screenshots/99_ironclad_victory_screen.png" target="_blank"><img src="assets/screenshots/99_ironclad_victory_screen.png" alt="Victory Banner" /></a>
+          <div class="gallery-caption"><strong>Floor 51 — Victory? Banner</strong>: Run completed in 13m 21s.</div>
+        </div>
+        <div class="gallery-item">
+          <a href="assets/screenshots/100_final_score_screen.png" target="_blank"><img src="assets/screenshots/100_final_score_screen.png" alt="Final Score 667" /></a>
+          <div class="gallery-caption"><strong>Final Score Breakdown (667 Points)</strong>: 51 Floors, 3 Bosses Slain, <em>Light Speed</em> (+50).</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="toast" id="toast">Copied TSV to clipboard! Paste (Ctrl+V) directly into Google Sheets.</div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

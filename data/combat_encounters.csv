@@ -1,0 +1,355 @@
+Run_Number,Iteration,Floor,Act,Enemy_Encounter,Turns,Damage_Taken,Run_Victory
+1,v1.0,1,1,Small Slimes,4,2,No
+1,v1.0,3,1,2 Louse,4,0,No
+1,v1.0,6,1,Lagavulin,6,31,No
+1,v1.0,10,1,Jaw Worm,3,7,No
+1,v1.0,14,1,2 Fungi Beasts,2,10,No
+1,v1.0,16,1,Slime Boss,8,27,No
+1,v1.0,18,2,Chosen,3,1,No
+1,v1.0,21,2,Shell Parasite,6,27,No
+1,v1.0,22,2,Masked Bandits,4,28,No
+1,v1.0,24,2,Slavers,5,36,No
+1,v1.0,27,2,3 Cultists,5,15,No
+1,v1.0,28,2,Colosseum Slavers,4,26,No
+1,v1.0,28,2,Colosseum Nobs,4,50,No
+2,v1.1,1,1,Jaw Worm,4,5,No
+2,v1.1,2,1,Cultist,6,6,No
+2,v1.1,4,1,2 Louse,3,1,No
+2,v1.1,5,1,Large Slime,8,24,No
+2,v1.1,12,1,Gremlin Nob,5,29,No
+2,v1.1,14,1,Red Slaver,3,11,No
+2,v1.1,16,1,The Guardian,11,32,No
+2,v1.1,18,2,Chosen,6,11,No
+2,v1.1,23,2,Slavers,7,45,No
+2,v1.1,25,2,2 Thieves,1,2,No
+2,v1.1,27,2,Shelled Parasite and Fungi,3,10,No
+2,v1.1,30,2,Snake Plant,2,11,No
+2,v1.1,31,2,Centurion and Healer,4,13,No
+2,v1.1,33,2,Collector,12,122,No
+3,v1.1,1,1,Cultist,4,1,No
+3,v1.1,3,1,2 Louse,3,5,No
+3,v1.1,4,1,Small Slimes,5,0,No
+3,v1.1,5,1,2 Fungi Beasts,4,7,No
+3,v1.1,7,1,Looter,4,6,No
+3,v1.1,11,1,Exordium Thugs,7,23,No
+3,v1.1,13,1,Exordium Wildlife,3,0,No
+3,v1.1,14,1,Lagavulin,5,21,No
+3,v1.1,16,1,The Guardian,11,29,No
+3,v1.1,18,2,Spheric Guardian,7,37,No
+3,v1.1,19,2,Shell Parasite,6,28,No
+3,v1.1,21,2,Chosen and Byrds,5,11,No
+3,v1.1,22,2,Cultist and Chosen,4,4,No
+3,v1.1,23,2,Slavers,6,43,No
+3,v1.1,27,2,Colosseum Slavers,4,24,No
+3,v1.1,29,2,Centurion and Healer,4,15,No
+3,v1.1,33,2,Automaton,12,124,No
+4,v1.1,1,1,Small Slimes,5,6,No
+4,v1.1,4,1,Jaw Worm,4,3,No
+4,v1.1,5,1,2 Louse,4,3,No
+4,v1.1,7,1,The Mushroom Lair,8,24,No
+4,v1.1,8,1,Lagavulin,5,25,No
+4,v1.1,10,1,Exordium Thugs,6,16,No
+4,v1.1,16,1,Slime Boss,12,81,No
+5,v1.2,1,1,2 Louse,3,2,No
+5,v1.2,3,1,Jaw Worm,6,0,No
+5,v1.2,5,1,Cultist,3,0,No
+5,v1.2,7,1,3 Sentries,12,9,No
+5,v1.2,8,1,Looter,4,2,No
+5,v1.2,11,1,Large Slime,7,2,No
+5,v1.2,13,1,Red Slaver,3,4,No
+5,v1.2,14,1,3 Louse,4,10,No
+5,v1.2,16,1,Slime Boss,14,41,No
+5,v1.2,18,2,Spheric Guardian,5,23,No
+5,v1.2,22,2,3 Byrds,4,6,No
+5,v1.2,23,2,Book of Stabbing,4,25,No
+5,v1.2,25,2,Snake Plant,4,9,No
+5,v1.2,27,2,Sentry and Sphere,8,38,No
+5,v1.2,29,2,3 Cultists,4,17,No
+5,v1.2,31,2,Centurion and Healer,5,18,No
+5,v1.2,33,2,Champ,8,59,No
+5,v1.2,35,3,Orb Walker,4,18,No
+5,v1.2,36,3,3 Shapes,4,14,No
+5,v1.2,41,3,Giant Head,6,19,No
+5,v1.2,42,3,Mind Bloom Boss Battle,4,4,No
+5,v1.2,45,3,Sphere and 2 Shapes,7,41,No
+5,v1.2,48,3,Jaw Worm Horde,3,78,No
+6,v1.2,1,1,Jaw Worm,6,11,No
+6,v1.2,5,1,Small Slimes,4,22,No
+6,v1.2,8,1,Gremlin Nob,4,26,No
+6,v1.2,10,1,Cultist,3,1,No
+6,v1.2,12,1,Large Slime,6,13,No
+6,v1.2,16,1,The Guardian,11,70,No
+6,v1.2,18,2,2 Thieves,4,28,No
+6,v1.2,19,2,3 Byrds,7,27,No
+6,v1.2,22,2,3 Cultists,5,47,No
+7,v1.2,1,1,Small Slimes,5,7,No
+7,v1.2,3,1,Cultist,3,1,No
+7,v1.2,4,1,Jaw Worm,2,6,No
+7,v1.2,7,1,Red Slaver,4,12,No
+7,v1.2,11,1,Large Slime,5,0,No
+7,v1.2,12,1,Exordium Thugs,5,12,No
+7,v1.2,13,1,2 Fungi Beasts,4,0,No
+7,v1.2,14,1,Looter,3,4,No
+7,v1.2,16,1,Hexaghost,8,49,No
+7,v1.2,18,2,Shell Parasite,6,33,No
+7,v1.2,24,2,2 Thieves,4,24,No
+7,v1.2,27,2,Snake Plant,3,4,No
+7,v1.2,28,2,Chosen and Byrds,6,21,No
+7,v1.2,31,2,Sentry and Sphere,5,32,No
+7,v1.2,33,2,Champ,7,69,No
+8,v1.2,1,1,Small Slimes,4,5,No
+8,v1.2,4,1,Cultist,5,12,No
+8,v1.2,7,1,Jaw Worm,4,3,No
+8,v1.2,10,1,Exordium Wildlife,9,7,No
+8,v1.2,11,1,3 Sentries,11,24,No
+8,v1.2,12,1,Large Slime,10,24,No
+8,v1.2,14,1,Lagavulin,11,30,No
+8,v1.2,16,1,Slime Boss,14,68,No
+9,v1.3,1,1,Small Slimes,3,5,No
+9,v1.3,3,1,Jaw Worm,4,5,No
+9,v1.3,5,1,Cultist,3,4,No
+9,v1.3,7,1,Gremlin Gang,5,23,No
+9,v1.3,8,1,2 Fungi Beasts,4,22,No
+9,v1.3,10,1,Red Slaver,3,8,No
+9,v1.3,12,1,3 Louse,4,1,No
+9,v1.3,13,1,Gremlin Nob,4,13,No
+9,v1.3,14,1,Large Slime,5,6,No
+9,v1.3,16,1,Slime Boss,9,49,No
+9,v1.3,18,2,2 Thieves,2,0,No
+9,v1.3,21,2,Chosen,2,1,No
+9,v1.3,22,2,Centurion and Healer,5,33,No
+9,v1.3,23,2,Gremlin Leader,10,42,No
+9,v1.3,25,2,Snake Plant,2,0,No
+9,v1.3,27,2,Shelled Parasite and Fungi,4,24,No
+9,v1.3,28,2,Sentry and Sphere,3,7,No
+9,v1.3,31,2,Cultist and Chosen,3,11,No
+9,v1.3,33,2,Champ,4,46,No
+9,v1.3,35,3,3 Darklings,5,21,No
+9,v1.3,37,3,3 Shapes,3,19,No
+9,v1.3,38,3,Writhing Mass,4,16,No
+9,v1.3,39,3,Sphere and 2 Shapes,4,33,No
+9,v1.3,41,3,Transient,5,0,No
+9,v1.3,45,3,3 Darklings,3,10,No
+9,v1.3,47,3,4 Shapes,6,27,No
+9,v1.3,48,3,2 Orb Walkers,5,63,No
+9,v1.3,50,3,Awakened One,4,56,No
+10,v1.4,1,1,Cultist,3,6,No
+10,v1.4,2,1,2 Louse,3,6,No
+10,v1.4,4,1,Jaw Worm,2,6,No
+10,v1.4,5,1,3 Louse,3,0,No
+10,v1.4,8,1,Blue Slaver,3,14,No
+10,v1.4,10,1,Lots of Slimes,6,11,No
+10,v1.4,12,1,Gremlin Gang,1,0,No
+10,v1.4,13,1,3 Louse,4,4,No
+10,v1.4,16,1,Slime Boss,13,51,No
+10,v1.4,18,2,2 Thieves,4,20,No
+10,v1.4,20,2,3 Byrds,5,16,No
+10,v1.4,21,2,Shelled Parasite and Fungi,4,8,No
+10,v1.4,25,2,Snecko,6,16,No
+10,v1.4,27,2,Sentry and Sphere,5,27,No
+10,v1.4,29,2,Slavers,4,7,No
+10,v1.4,30,2,Snake Plant,3,16,No
+10,v1.4,31,2,Cultist and Chosen,5,22,No
+10,v1.4,33,2,Champ,3,17,No
+11,v1.4,1,1,Small Slimes,4,5,No
+11,v1.4,3,1,2 Louse,2,6,No
+11,v1.4,5,1,Cultist,4,10,No
+11,v1.4,7,1,Looter,4,17,No
+11,v1.4,11,1,2 Fungi Beasts,2,6,No
+11,v1.4,12,1,The Mushroom Lair,2,0,No
+11,v1.4,13,1,Exordium Thugs,3,10,No
+11,v1.4,14,1,3 Sentries,5,24,No
+11,v1.4,16,1,Slime Boss,7,53,No
+12,v1.5,1,1,2 Louse,4,5,No
+12,v1.5,2,1,Small Slimes,3,0,No
+12,v1.5,5,1,Cultist,3,6,No
+12,v1.5,6,1,Gremlin Nob,3,14,No
+12,v1.5,8,1,Large Slime,7,13,No
+12,v1.5,10,1,The Mushroom Lair,3,7,No
+12,v1.5,11,1,3 Louse,3,5,No
+12,v1.5,12,1,Looter,3,5,No
+12,v1.5,13,1,Lagavulin,6,22,No
+12,v1.5,14,1,2 Fungi Beasts,4,7,No
+12,v1.5,16,1,The Guardian,9,40,No
+12,v1.5,18,2,Chosen,3,0,No
+12,v1.5,20,2,Shell Parasite,3,3,No
+12,v1.5,23,2,Chosen and Byrds,5,1,No
+12,v1.5,24,2,Snecko,3,10,No
+12,v1.5,25,2,Centurion and Healer,4,9,No
+12,v1.5,28,2,Slavers,6,73,No
+12,v1.5,29,2,Snake Plant,4,2,No
+12,v1.5,31,2,Snecko,4,16,No
+12,v1.5,33,2,Champ,8,30,No
+12,v1.5,35,3,3 Shapes,5,61,No
+12,v1.5,36,3,3 Darklings,3,25,No
+12,v1.5,38,3,Maw,5,9,No
+12,v1.5,39,3,4 Shapes,3,24,No
+12,v1.5,41,3,Spire Growth,6,41,No
+12,v1.5,42,3,Jaw Worm Horde,7,48,No
+12,v1.5,46,3,Sphere and 2 Shapes,1,9,No
+13,v1.5,1,1,Jaw Worm,4,11,No
+13,v1.5,4,1,Cultist,3,6,No
+13,v1.5,6,1,Small Slimes,4,3,No
+13,v1.5,7,1,3 Sentries,6,21,No
+13,v1.5,8,1,3 Louse,4,13,No
+13,v1.5,11,1,Large Slime,5,5,No
+13,v1.5,16,1,Hexaghost,6,48,No
+13,v1.5,18,2,Chosen,3,5,No
+13,v1.5,20,2,Shell Parasite,1,0,No
+13,v1.5,24,2,Slavers,4,55,No
+13,v1.5,27,2,Chosen and Byrds,6,14,No
+13,v1.5,29,2,Snecko,4,19,No
+13,v1.5,30,2,Shelled Parasite and Fungi,4,15,No
+13,v1.5,33,2,Collector,7,68,No
+13,v1.5,35,3,3 Shapes,4,25,No
+13,v1.5,36,3,3 Darklings,5,26,No
+13,v1.5,39,3,Spire Growth,4,37,No
+13,v1.5,41,3,Transient,5,27,No
+13,v1.5,44,3,3 Darklings,5,47,No
+13,v1.5,45,3,4 Shapes,4,38,No
+13,v1.5,46,3,Maw,6,26,No
+14,v1.6,1,1,Jaw Worm,4,14,No
+14,v1.6,2,1,Cultist,3,6,No
+14,v1.6,7,1,2 Louse,2,0,No
+14,v1.6,8,1,Gremlin Nob,3,16,No
+14,v1.6,11,1,Gremlin Gang,4,40,No
+14,v1.6,12,1,Blue Slaver,2,9,No
+14,v1.6,16,1,The Guardian,7,63,No
+15,v1.6,1,1,2 Louse,4,10,No
+15,v1.6,3,1,Jaw Worm,4,11,No
+15,v1.6,5,1,Cultist,5,11,No
+15,v1.6,6,1,Lagavulin,8,39,No
+15,v1.6,7,1,2 Fungi Beasts,3,1,No
+15,v1.6,8,1,Lots of Slimes,5,11,No
+15,v1.6,10,1,Exordium Wildlife,3,3,No
+15,v1.6,11,1,2 Fungi Beasts,3,3,No
+15,v1.6,12,1,3 Sentries,6,18,No
+15,v1.6,14,1,Red Slaver,4,11,No
+15,v1.6,16,1,The Guardian,9,62,No
+15,v1.6,18,2,3 Byrds,8,25,No
+15,v1.6,19,2,Spheric Guardian,4,24,No
+15,v1.6,21,2,Centurion and Healer,6,35,No
+15,v1.6,24,2,Snake Plant,5,42,No
+15,v1.6,25,2,Cultist and Chosen,8,56,No
+16,v1.6,1,1,Jaw Worm,4,14,No
+16,v1.6,3,1,Small Slimes,3,0,No
+16,v1.6,10,1,2 Louse,2,7,No
+16,v1.6,12,1,The Mushroom Lair,4,25,No
+16,v1.6,13,1,Gremlin Nob,3,0,No
+16,v1.6,14,1,2 Fungi Beasts,3,6,No
+16,v1.6,16,1,Hexaghost,8,51,No
+16,v1.6,18,2,2 Thieves,4,26,No
+16,v1.6,22,2,Spheric Guardian,3,13,No
+16,v1.6,24,2,Snecko,5,20,No
+16,v1.6,25,2,Chosen and Byrds,5,26,No
+16,v1.6,27,2,3 Cultists,4,27,No
+17,v1.7,1,1,Jaw Worm,4,15,No
+17,v1.7,5,1,Cultist,3,1,No
+17,v1.7,7,1,Small Slimes,3,8,No
+17,v1.7,8,1,3 Louse,6,16,No
+17,v1.7,11,1,Exordium Thugs,3,5,No
+17,v1.7,13,1,Exordium Wildlife,3,6,No
+17,v1.7,14,1,Gremlin Nob,3,0,No
+17,v1.7,16,1,Hexaghost,10,30,No
+17,v1.7,18,2,Shell Parasite,5,15,No
+17,v1.7,21,2,2 Thieves,4,14,No
+17,v1.7,29,2,Cultist and Chosen,7,25,No
+17,v1.7,30,2,Centurion and Healer,9,31,No
+17,v1.7,31,2,3 Cultists,6,28,No
+18,v2.0,1,1,2 Louse,4,2,No
+18,v2.0,2,1,Small Slimes,2,0,No
+18,v2.0,3,1,Jaw Worm,3,8,No
+18,v2.0,7,1,Exordium Thugs,5,23,No
+18,v2.0,11,1,Lots of Slimes,3,18,No
+18,v2.0,12,1,Large Slime,5,12,No
+18,v2.0,13,1,Looter,3,5,No
+18,v2.0,14,1,2 Fungi Beasts,4,9,No
+18,v2.0,16,1,The Guardian,11,64,No
+18,v2.0,18,2,2 Thieves,4,25,No
+18,v2.0,21,2,Spheric Guardian,4,5,No
+18,v2.0,22,2,Snake Plant,4,6,No
+18,v2.0,24,2,Slavers,7,18,No
+18,v2.0,25,2,Centurion and Healer,4,19,No
+18,v2.0,27,2,Cultist and Chosen,4,1,No
+18,v2.0,31,2,Snecko,3,0,No
+18,v2.0,33,2,Automaton,10,29,No
+18,v2.0,35,3,Orb Walker,3,1,No
+18,v2.0,37,3,3 Shapes,4,8,No
+18,v2.0,39,3,Spire Growth,5,13,No
+18,v2.0,40,3,Reptomancer,8,35,No
+18,v2.0,42,3,Maw,7,18,No
+18,v2.0,44,3,Transient,5,30,No
+18,v2.0,45,3,3 Darklings,7,16,No
+18,v2.0,50,3,Time Eater,11,95,No
+19,v2.1,1,1,Jaw Worm,4,8,No
+19,v2.1,2,1,Cultist,3,6,No
+19,v2.1,4,1,2 Louse,3,11,No
+19,v2.1,5,1,Blue Slaver,5,13,No
+19,v2.1,6,1,Lagavulin,7,31,No
+19,v2.1,8,1,Large Slime,6,29,No
+19,v2.1,10,1,Exordium Thugs,4,15,No
+19,v2.1,12,1,2 Fungi Beasts,2,0,No
+19,v2.1,14,1,Large Slime,5,3,No
+19,v2.1,16,1,Slime Boss,9,22,No
+19,v2.1,18,2,Chosen,1,0,No
+19,v2.1,22,2,Spheric Guardian,4,24,No
+19,v2.1,24,2,Centurion and Healer,3,10,No
+19,v2.1,27,2,Gremlin Leader,4,6,No
+19,v2.1,30,2,Snecko,3,11,No
+19,v2.1,31,2,Snake Plant,4,25,No
+19,v2.1,33,2,Collector,7,35,No
+19,v2.1,35,3,Orb Walker,2,7,No
+19,v2.1,38,3,3 Shapes,2,15,No
+19,v2.1,40,3,Spire Growth,3,12,No
+19,v2.1,45,3,Jaw Worm Horde,3,11,No
+19,v2.1,46,3,Nemesis,4,63,No
+20,v2.2,1,1,Small Slimes,4,5,No
+20,v2.2,3,1,Cultist,4,5,No
+20,v2.2,4,1,2 Louse,3,2,No
+20,v2.2,5,1,Red Slaver,5,15,No
+20,v2.2,7,1,Gremlin Gang,5,22,No
+20,v2.2,8,1,3 Sentries,9,56,No
+20,v2.2,11,1,Blue Slaver,4,17,No
+20,v2.2,12,1,Exordium Wildlife,5,9,No
+20,v2.2,16,1,Hexaghost,11,50,No
+20,v2.2,18,2,2 Thieves,2,2,No
+20,v2.2,19,2,Chosen,4,5,No
+20,v2.2,21,2,Centurion and Healer,5,27,No
+20,v2.2,22,2,Snecko,3,6,No
+20,v2.2,23,2,Snake Plant,3,11,No
+20,v2.2,27,2,Centurion and Healer,3,1,No
+20,v2.2,28,2,Snecko,3,10,No
+20,v2.2,29,2,Snake Plant,5,8,No
+20,v2.2,30,2,Chosen and Byrds,5,7,No
+20,v2.2,31,2,Cultist and Chosen,7,13,No
+20,v2.2,33,2,Champ,9,21,No
+20,v2.2,35,3,Orb Walker,3,13,No
+20,v2.2,38,3,3 Darklings,4,10,No
+20,v2.2,39,3,Transient,5,17,No
+20,v2.2,40,3,Reptomancer,6,48,No
+20,v2.2,42,3,Nemesis,7,35,No
+20,v2.2,44,3,Sphere and 2 Shapes,5,32,No
+20,v2.2,48,3,Spire Growth,4,37,No
+20,v2.2,50,3,Time Eater,5,73,No
+21,v2.3,1,1,Cultist,3,6,Yes
+21,v2.3,2,1,Jaw Worm,3,3,Yes
+21,v2.3,3,1,Small Slimes,3,8,Yes
+21,v2.3,7,1,Lagavulin,12,44,Yes
+21,v2.3,10,1,Gremlin Gang,5,20,Yes
+21,v2.3,13,1,3 Louse,3,0,Yes
+21,v2.3,14,1,Exordium Wildlife,4,9,Yes
+21,v2.3,16,1,The Guardian,12,40,Yes
+21,v2.3,18,2,Spheric Guardian,2,0,Yes
+21,v2.3,20,2,Masked Bandits,3,8,Yes
+21,v2.3,22,2,Shell Parasite,4,10,Yes
+21,v2.3,23,2,Book of Stabbing,5,29,Yes
+21,v2.3,24,2,Shelled Parasite and Fungi,3,9,Yes
+21,v2.3,28,2,Snake Plant,3,0,Yes
+21,v2.3,30,2,Centurion and Healer,4,9,Yes
+21,v2.3,33,2,Collector,6,13,Yes
+21,v2.3,35,3,3 Darklings,4,2,Yes
+21,v2.3,37,3,Orb Walker,2,0,Yes
+21,v2.3,38,3,4 Shapes,2,2,Yes
+21,v2.3,41,3,Sphere and 2 Shapes,4,12,Yes
+21,v2.3,48,3,Spire Growth,3,2,Yes
+21,v2.3,50,3,Donu and Deca,7,28,Yes

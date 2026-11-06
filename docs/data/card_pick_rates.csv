@@ -1,0 +1,85 @@
+Card_Name,Bot_Base_Score,Times_Offered,Times_Picked,Times_Passed,Pick_Rate_Pct,Upgraded_Picks,Shop_Purchases,Total_Acquired,Copies_In_Victory_Deck
+Heavy Blade,68,31,20,11,64.5,6,2,22,2
+Shrug It Off,79,32,18,14,56.2,4,0,18,1
+Pommel Strike,73,25,15,10,60.0,2,0,15,2
+Twin Strike,69,30,15,15,50.0,4,1,16,2
+Shockwave,88,17,13,4,76.5,2,0,13,0
+Hemokinesis,75,17,12,5,70.6,2,0,12,1
+Headbutt,66,33,12,21,36.4,5,0,12,1
+Body Slam,68,35,12,23,34.3,2,1,13,1
+Clothesline,70,27,11,16,40.7,4,1,12,0
+Feel No Pain,87,10,10,0,100.0,2,2,12,1
+Sword Boomerang,65,21,10,11,47.6,3,2,12,1
+True Grit,72,30,9,21,30.0,5,0,9,0
+Corruption,88,13,8,5,61.5,0,0,8,1
+Cleave,64,27,8,19,29.6,2,0,8,0
+Feed,90,9,7,2,77.8,0,1,8,1
+Pummel,68,11,7,4,63.6,2,2,9,1
+Blood for Blood,74,13,7,6,53.8,0,0,7,1
+Armaments,67,29,7,22,24.1,3,0,7,0
+Reaper,90,6,6,0,100.0,0,0,6,0
+Offering,98,6,6,0,100.0,0,0,6,0
+Uppercut,80,10,6,4,60.0,1,1,7,2
+Anger,61,29,6,23,20.7,0,1,7,0
+Battle Trance,85,6,5,1,83.3,1,1,6,0
+Disarm,85,7,5,2,71.4,1,0,5,0
+Dark Embrace,75,8,5,3,62.5,2,0,5,0
+Flame Barrier,78,8,5,3,62.5,0,0,5,0
+Spot Weakness,81,9,5,4,55.6,2,1,6,1
+Carnage,76,9,5,4,55.6,0,0,5,0
+Demon Form,84,9,5,4,55.6,1,0,5,0
+Inflame,82,10,5,5,50.0,2,2,7,0
+Thunderclap,64,34,5,29,14.7,1,1,6,1
+Metallicize,72,5,4,1,80.0,1,0,4,0
+Limit Break,77,8,4,4,50.0,0,0,4,0
+Ghostly Armor,66,12,4,8,33.3,2,0,4,0
+Whirlwind,92,3,3,0,100.0,0,1,4,0
+Immolate,96,3,3,0,100.0,0,0,3,0
+Bloodletting,38,10,3,7,30.0,1,0,3,0
+Rage,62,10,3,7,30.0,1,0,3,0
+Evolve,68,4,2,2,50.0,1,0,2,0
+Power Through,73,5,2,3,40.0,1,0,2,0
+Fiend Fire,82,5,2,3,40.0,0,1,3,0
+Second Wind,70,9,2,7,22.2,1,0,2,0
+Dual Wield,60,10,2,8,20.0,2,0,2,0
+Bludgeon,74,11,2,9,18.2,2,0,2,0
+Blind,68,1,1,0,100.0,0,0,1,0
+Impervious,86,3,1,2,33.3,0,0,1,0
+Burning Pact,65,3,1,2,33.3,0,0,1,0
+Fire Breathing,56,10,1,9,10.0,1,0,1,0
+Sever Soul,55,12,1,11,8.3,0,0,1,0
+Iron Wave,59,25,1,24,4.0,0,0,1,0
+Perfected Strike,54,32,1,31,3.1,0,0,1,0
+Wild Strike,50,36,0,36,0.0,0,0,0,0
+Havoc,50,28,0,28,0.0,0,0,0,0
+Flex,55,28,0,28,0.0,0,0,0,0
+Clash,50,24,0,24,0.0,0,0,0,0
+Warcry,52,19,0,19,0.0,0,0,0,0
+Entrench,58,13,0,13,0.0,0,0,0,0
+Infernal Blade,50,12,0,12,0.0,0,0,0,0
+Reckless Charge,48,11,0,11,0.0,0,0,0,0
+Searing Blow,50,11,0,11,0.0,0,0,0,0
+Rampage,54,11,0,11,0.0,0,0,0,0
+Combust,58,10,0,10,0.0,0,0,0,0
+Sentinel,50,9,0,9,0.0,0,0,0,0
+Exhume,65,9,0,9,0.0,0,0,0,0
+Intimidate,63,7,0,7,0.0,0,0,0,0
+Berserk,50,6,0,6,0.0,0,0,0,0
+Brutality,50,6,0,6,0.0,0,0,0,0
+Rupture,50,5,0,5,0.0,0,0,0,0
+Juggernaut,64,5,0,5,0.0,0,0,0,0
+Double Tap,66,4,0,4,0.0,0,0,0,0
+Barricade,74,4,0,4,0.0,0,0,0,0
+Seeing Red,67,4,0,4,0.0,0,0,0,0
+Dropkick,52,3,0,3,0.0,0,0,0,0
+Dramatic Entrance,50,1,0,1,0.0,0,0,0,0
+Worship,50,1,0,1,0.0,0,0,0,0
+PiercingWail,50,1,0,1,0.0,0,0,0,0
+Madness,50,1,0,1,0.0,0,0,0,0
+HandOfGreed,50,1,0,1,0.0,0,0,0,0
+ThirdEye,50,1,0,1,0.0,0,0,0,0
+Bane,50,1,0,1,0.0,0,0,0,0
+Crescendo,50,1,0,1,0.0,0,0,0,0
+Dagger Throw,50,1,0,1,0.0,0,0,0,0
+Double Energy,50,1,0,1,0.0,0,0,0,0
+EmptyFist,50,1,0,1,0.0,0,0,0,0
