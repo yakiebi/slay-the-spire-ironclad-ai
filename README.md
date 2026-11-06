@@ -31,6 +31,80 @@ unlockAchievement: RUBY
 
 ---
 
+## 🎨 Visual Infographic: 21-Run Statistical Experiment & Core Synergies
+
+Below is a visual summary of the experiment's telemetry, card draft mechanics, relic synergies, and boss counter-heuristics across all 21 runs:
+
+### 1. Key Card Pick-Rates & In-Game Card Art (Top Archetype Engines)
+
+| Card Asset | Card Name | Pick Rate (%) | Times Offered | Times Picked | AI Valuation & Combat Role |
+| :---: | :--- | :---: | :---: | :---: | :--- |
+| <img src="docs/assets/game_assets/card_feel_no_pain.png" alt="Feel No Pain" width="90" /> | **Feel No Pain**<br>`Power • Uncommon` | **`100.0%`** | 3 | 3 | **Primary Block Engine**: +3 (4) Block whenever any card is exhausted. Infinite block scaling with *Corruption* & *Second Wind*. |
+| <img src="docs/assets/game_assets/card_corruption.png" alt="Corruption" width="90" /> | **Corruption**<br>`Power • Rare` | **`66.7%`** | 3 | 2 | **Energy Acceleration Engine**: All Skills cost 0 Energy and exhaust. Paired with *Snecko Eye* for unstoppable free turns. |
+| <img src="docs/assets/game_assets/card_shockwave.png" alt="Shockwave" width="90" /> | **Shockwave**<br>`Skill • Uncommon` | **`76.5%`** | 17 | 13 | **Universal Debuff Engine**: 3 (5) turns of Weak & Vulnerable to ALL enemies. Top priority debuff before heavy attack bursts. |
+| <img src="docs/assets/game_assets/card_uppercut.png" alt="Uppercut" width="90" /> | **Uppercut**<br>`Attack • Uncommon` | **`53.3%`** | 15 | 8 | **Boss Execution & Debuff**: 13 damage + 1 (2) Weak & Vulnerable. Strips Artifact and sets up turn-2 boss kills. |
+| <img src="docs/assets/game_assets/card_heavy_blade.png" alt="Heavy Blade" width="90" /> | **Heavy Blade**<br>`Attack • Common` | **`64.5%`** | 31 | 20 | **Strength Finisher**: 14 damage; scales with 3x (5x) Strength multiplier. Primary damage dealer in Boss encounters. |
+| <img src="docs/assets/game_assets/card_body_slam.png" alt="Body Slam" width="90" /> | **Body Slam**<br>`Attack • Common` | **`61.5%`** | 26 | 16 | **Offensive Block Converter**: Deals damage equal to current Block. Upgrades to 0-cost; deals 40–90 damage after big block turns. |
+| <img src="docs/assets/game_assets/card_shrug_it_off.png" alt="Shrug It Off" width="90" /> | **Shrug It Off**<br>`Skill • Common` | **`62.5%`** | 32 | 20 | **Consistent Cycling & Guard**: 8 (11) Block + draws 1 card. High draft priority across all 21 runs. |
+| <img src="docs/assets/game_assets/card_feed.png" alt="Feed" width="90" /> | **Feed**<br>`Attack • Rare` | **`66.7%`** | 3 | 2 | **Endgame Max HP Scaler**: Fatal kills permanently raise Max HP by +3 (+4). Scaled Max HP from 80 to 93 in Run #21! |
+| <img src="docs/assets/game_assets/card_pommel_strike.png" alt="Pommel Strike" width="90" /> | **Pommel Strike**<br>`Attack • Common` | **`54.8%`** | 31 | 17 | **Damage + Card Draw**: 9 (10) damage + draws 1 (2) cards. Vital for digging into Power cards and fetching discarded cards. |
+| <img src="docs/assets/game_assets/card_demon_form.png" alt="Demon Form" width="90" /> | **Demon Form**<br>`Power • Rare` | **`60.0%`** | 5 | 3 | **Passive Scaling Power**: Grants +2 (+3) Strength every turn. Guaranteed scaling win condition against Act 2 & 3 bosses. |
+
+---
+
+### 2. Core Relic Synergies (From Game Assets)
+
+| Relic Asset | Relic Name | Rarity | Runs Obtained | Strategic Value in AI Heuristics |
+| :---: | :--- | :---: | :---: | :--- |
+| <img src="docs/assets/game_assets/large_relic_snecko_eye.png" alt="Snecko Eye" width="56" /> | **Snecko Eye** | Boss | 4 | **Decisive Win Engine**: +2 card draw per turn (`7-card hands`). Confuses card costs `0–3`. `play_ironclad.py` prioritizes high-cost attacks (`Heavy Blade`, `Uppercut`, `Demon Form`) and Skills (`Corruption` overrides all Skill costs to 0!). |
+| <img src="docs/assets/game_assets/large_relic_burning_blood.png" alt="Burning Blood" width="56" /> | **Burning Blood** | Starter | 21 (100%) | **Passive Sustain**: Heals 6 HP at the end of every combat. Allows the bot to draft aggressive self-damage cards (*Hemokinesis*, *Offering*) without losing net HP. |
+| <img src="docs/assets/game_assets/relic_cursed_key.png" alt="Cursed Key" width="52" /> | **Cursed Key** | Boss | 3 | **+1 Energy per Turn**: Crucial for casting 4-cost combo hands. Paired with *Omamori* to open Act 3 chests with zero curse penalty. |
+| <img src="docs/assets/game_assets/relic_war_paint.png" alt="War Paint" width="52" /> | **War Paint** | Common | 5 | **Early Defense Boost**: Upgrades 2 random Skills instantly at Floor 0 (*Neow's Blessing* in Run #21 upgraded 2 *Defends*). |
+| <img src="docs/assets/game_assets/relic_bag_of_prep.png" alt="Bag of Preparation" width="52" /> | **Bag of Preparation** | Common | 4 | **Turn 1 Explosiveness**: Draws 2 additional cards on Turn 1. Combined with *Snecko Eye* for a **9-card opening hand** on Floor 50! |
+| <img src="docs/assets/game_assets/relic_horn_cleat.png" alt="Horn Cleat" width="52" /> | **Horn Cleat** | Uncommon | 3 | **Turn 2 Stabilization**: Provides 14 Block on Turn 2, precisely when Act 3 Bosses (*Donu & Deca*) unleash 26 incoming damage. |
+| <img src="docs/assets/game_assets/relic_eternal_feather.png" alt="Eternal Feather" width="52" /> | **Eternal Feather** | Uncommon | 2 | **Campfire Healing Without Resting**: Restores +3 HP per 5 cards in deck at rest sites, freeing the bot to *Smith* upgrades at every fire. |
+
+---
+
+### 3. Aggregate Experiment Infographics Summary
+
+```
+========================================================================================
+                      SLAY THE SPIRE — 21-RUN EXPERIMENT INFOGRAPHIC
+========================================================================================
+
+  TOTAL PLAYTIME            TOTAL COMBATS           CARDS EVALUATED         PEAK MAX HP
+   4h 33m 50s                 354 Combats             326 / 1,018             93 Max HP
+  (Avg 13m 02s/run)         (16.9 per run)           (32.0% Pick Rate)     (Seed: 46N5WFFAZ8FY0)
+
+────────────────────────────────────────────────────────────────────────────────────────
+  PROGRESSION BY DEVELOPMENT PHASE (v1.0 -> v2.3)
+────────────────────────────────────────────────────────────────────────────────────────
+
+  [Phase 1] Runs #1–#3   (v1.0–v1.2): ░░░░░░░░░░░░░░░░░░░░  Floor 14 Max (Early Act 1 WIP)
+  [Phase 2] Runs #4–#7   (v1.3–v1.5): ████████░░░░░░░░░░░░  Floor 23 Max (Act 1 Boss Cleared)
+  [Phase 3] Runs #8–#12  (v1.6–v1.8): ████████████░░░░░░░░  Floor 33 Max (Act 2 Boss Cleared)
+  [Phase 4] Runs #13–#17 (v1.9–v2.1): ████████████████░░░░  Floor 42 Max (Late Act 3 Reached)
+  [Phase 5] Runs #18–#21 (v2.2–v2.3): ████████████████████  Floor 51 VICTORY! (13m 21s Clear!)
+                                                            • 100% Act 3 Reach (4/4 runs)
+                                                            • 75% Floor 50 Boss Reach (3/4 runs)
+
+────────────────────────────────────────────────────────────────────────────────────────
+  DEADLIEST MONSTER ENCOUNTERS (Top Damage Taken per Fight Across 354 Encounters)
+────────────────────────────────────────────────────────────────────────────────────────
+
+  1. Time Eater (Boss)       [Floor 50]  ████████████████████ 44.5 Avg Dmg Taken (2 fights)
+  2. The Guardian (Boss)     [Floor 16]  ████████████░░░░░░░░ 28.3 Avg Dmg Taken (6 fights)
+  3. Awakened One (Boss)     [Floor 50]  ███████████░░░░░░░░░ 26.0 Avg Dmg Taken (1 fight)
+  4. Lagavulin (Elite)       [Floor 7]   █████████░░░░░░░░░░░ 21.4 Avg Dmg Taken (7 fights)
+  5. Book of Stabbing (Elite)[Floor 23]  ████████░░░░░░░░░░░░ 18.2 Avg Dmg Taken (5 fights)
+  6. Nemesis (Elite)         [Floor 40]  ███████░░░░░░░░░░░░░ 16.5 Avg Dmg Taken (4 fights)
+  7. Donu and Deca (Boss)    [Floor 50]  ██████░░░░░░░░░░░░░░ 13.0 Dmg Taken (SLAIN Turn 7!)
+========================================================================================
+```
+
+---
+
 ## 🔥 Floor 50 Decision Log: Exploiting `Corruption` + `Snecko Eye` & Bypassing `Time Warp`
 
 ### 1. Donu & Deca Turn 1 & Turn 2 Execution (`run_history.log`, Run #21)

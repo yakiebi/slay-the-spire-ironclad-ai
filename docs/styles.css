@@ -587,3 +587,135 @@ pre.code-block code {
 .toast.show {
   opacity: 1;
 }
+
+/* ==========================================================================
+   Infographics Grid & Asset Cards
+   ========================================================================== */
+.infographic-banner {
+  background: linear-gradient(135deg, rgba(201, 42, 42, 0.15), rgba(245, 159, 0, 0.08) 50%, rgba(34, 184, 207, 0.1));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.infographic-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.info-stat-box {
+  background: rgba(22, 19, 28, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.info-stat-num {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--gold-light);
+  font-family: var(--font-mono);
+}
+
+.info-stat-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+}
+
+.asset-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.asset-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.asset-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--crimson);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.asset-img-wrap {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.asset-img-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.asset-info {
+  flex-grow: 1;
+}
+
+.asset-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.asset-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.asset-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.asset-tag-power { background: rgba(151, 117, 250, 0.2); color: var(--purple); }
+.asset-tag-skill { background: rgba(34, 184, 207, 0.2); color: var(--cyan); }
+.asset-tag-attack { background: rgba(201, 42, 42, 0.25); color: #ff6b6b; }
+.asset-tag-relic { background: rgba(245, 159, 0, 0.25); color: var(--gold-light); }
+
+.asset-metrics {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.asset-metrics strong {
+  color: var(--emerald-light);
+}
+
+.asset-desc {
+  font-size: 0.78rem;
+  color: #b8b3c4;
+  line-height: 1.35;
+}
+
