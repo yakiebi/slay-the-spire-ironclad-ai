@@ -31,6 +31,12 @@
         <a class="btn btn-primary" href="#spreadsheets">
           📋 Open Interactive Spreadsheet &amp; TSV Copy
         </a>
+        <a class="btn" href="#developer-guide">
+          🛠️ How to Install, Run &amp; Train Your Own Bot
+        </a>
+        <a class="btn" href="https://github.com/yakiebi/slay-the-spire-ironclad-ai" target="_blank" rel="noopener">
+          💻 GitHub Source Repository
+        </a>
         <a class="btn" href="data/runs_summary.csv" download>⬇ Runs CSV</a>
         <a class="btn" href="data/card_pick_rates.csv" download>⬇ Card Pick Rates CSV</a>
         <a class="btn" href="data/relics_obtained.csv" download>⬇ Relics CSV</a>
@@ -277,6 +283,104 @@
           <a href="assets/screenshots/100_final_score_screen.png" target="_blank"><img src="assets/screenshots/100_final_score_screen.png" alt="Final Score 667" /></a>
           <div class="gallery-caption"><strong>Final Score Breakdown (667 Points)</strong>: 51 Floors, 3 Bosses Slain, <em>Light Speed</em> (+50).</div>
         </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WAS BUILT + INSTALLATION & DEVELOPER GUIDE -->
+    <section class="section" id="developer-guide">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">6. How the Bot Was Built — Installation, Source Usage &amp; Custom Training Guide</h2>
+          <p class="section-subtitle">Complete guide to our zero-mod JVM instrumentation method, running the bot on your PC, editing heuristics, or training your own RL/LLM agent.</p>
+        </div>
+      </div>
+
+      <div class="strategy-grid">
+        <div class="strategy-card">
+          <h4>A. Method Used to Build the Bot (Zero-Mod JVM Agent)</h4>
+          <p>Instead of fragile OCR/screen-scraping or requiring third-party mod loaders (<em>ModTheSpire</em> / <em>BaseMod</em>), we built a two-layer architecture that attaches directly to unmodified Steam <em>Slay the Spire</em>:</p>
+          <ul>
+            <li><strong>Layer 1 — In-Process Java Agent (<code>observer/StsObserverAgent.java</code>)</strong>: Attached via <code>-javaagent:observer/sts_observer.jar</code>. Starts an embedded HTTP server on <code>127.0.0.1:17575</code> inside the game JVM.</li>
+            <li><strong>Thread-Safe LibGDX Dispatch</strong>: Reads exact game memory (HP, energy, monster intents, powers, hand cards, hitboxes) on <code>/state</code> and executes all UI/card actions inside <code>Gdx.app.postRunnable(...)</code> on <code>/action</code> so actions run deterministically on the OpenGL render thread.</li>
+            <li><strong>Layer 2 — Iterative Python Planner (<code>play_ironclad.py</code>)</strong>: Evolved across 21 runs (<code>v1.0</code> → <code>v2.3</code>) by analyzing every loss log and encoding targeted counter-rules (<em>Slime Boss</em> split, <em>Awakened One</em> Curiosity, <em>Nemesis</em> Intangible, <em>Time Eater</em> Time Warp/Haste).</li>
+          </ul>
+        </div>
+
+        <div class="strategy-card">
+          <h4>B. How to Install &amp; Run the Bot (3 Steps)</h4>
+          <p>Requires Steam <em>Slay the Spire</em> (which already bundles its own Java runtime in <code>jre\bin\java.exe</code>) and Python 3.8+ (standard library only, no <code>pip install</code> needed!):</p>
+          <pre class="code-block"><code># 1. Clone the repository
+git clone https://github.com/yakiebi/slay-the-spire-ironclad-ai.git
+cd slay-the-spire-ironclad-ai
+
+# 2. Launch Slay the Spire with the Java Agent attached
+.\launch_sts_with_agent.bat
+
+# 3. In a second terminal, run the Ironclad AI bot
+python play_ironclad.py</code></pre>
+          <p style="margin-top:0.65rem;">If your Steam library is on another drive, set <code>$env:STS_DIR="D:\SteamLibrary\steamapps\common\SlayTheSpire"</code> before running <code>.\launch_sts_with_agent.bat</code>.</p>
+        </div>
+
+        <div class="strategy-card">
+          <h4>C. How to Edit Heuristics or Play Differently</h4>
+          <p>All decision logic lives in clean, self-contained functions inside <code>play_ironclad.py</code>:</p>
+          <ul>
+            <li><strong>Card Draft &amp; Shop Tier List (<code>CARD_SCORES</code> &amp; <code>evaluate_card_for_deck</code>)</strong>: Edit base scores (0–100) or add synergy bonuses for archetypes like <em>Barricade + Entrench + Body Slam</em> or <em>Rupture + Brutality</em>.</li>
+            <li><strong>Combat Card Sequencing (<code>handle_combat</code>)</strong>: Modify the 5-stage combat scorer (0-cost setup → Powers → Debuffs → Urgency-weighted Block → Lethal/Attack post-scoring).</li>
+            <li><strong>Map Routing (<code>handle_map</code>)</strong>: Adjust the 3-floor lookahead weights for Elites (<code>E</code>), Campfires (<code>R</code>), Shops (<code>$</code>), and Events (<code>?</code>), or enable <code>hasEmeraldKey</code> pathing for Act 4 Heart runs.</li>
+            <li><strong>Rebuilding the Java Agent</strong>: If you edit <code>observer/StsObserverAgent.java</code>, run <code>.\build_observer_jar.bat</code> to recompile <code>sts_observer.jar</code>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="chart-card" style="margin-top:1.25rem;">
+        <h3>D. Training Your Own RL / Imitation Learning / LLM Agent via HTTP API (<code>http://127.0.0.1:17575</code>)</h3>
+        <p class="chart-desc">Because <code>StsObserverAgent</code> exposes a language-agnostic JSON API, you can connect PyTorch / Gymnasium RL agents, MCTS planners, or LLM agents in any language:</p>
+        <table class="api-table">
+          <thead>
+            <tr>
+              <th>HTTP Endpoint</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>GET /state</code></td>
+              <td>Returns full JSON state: <code>mode</code>, <code>dungeon</code> (floor, act, screen), <code>room</code>, <code>player</code> (HP, block, energy, hand, masterDeck, relics, potions, powers), <code>monsters</code> (HP, block, intent, intentDmg, powers), and UI hitboxes.</td>
+            </tr>
+            <tr>
+              <td><code>GET /action?cmd=play_card&amp;index=0&amp;target=0</code></td>
+              <td>Queues hand card <code>index</code> onto <code>GameActionManager.cardQueue</code> targeting monster <code>target</code> (or <code>-1</code> for self/AoE).</td>
+            </tr>
+            <tr>
+              <td><code>GET /action?cmd=end_turn</code></td>
+              <td>Triggers <code>endTurnButton.disable(true)</code> to end the player's combat turn cleanly.</td>
+            </tr>
+            <tr>
+              <td><code>GET /action?cmd=click&amp;x=960&amp;y=540</code></td>
+              <td>Moves cursor to <code>(x, y)</code> in 1920×1080 space and performs a left-click on the LibGDX thread.</td>
+            </tr>
+            <tr>
+              <td><code>GET /action?cmd=hand_select&amp;index=0</code></td>
+              <td>Selects a card in <code>HandCardSelectScreen</code> (Armaments, True Grit, Dual Wield, Gambling Chip).</td>
+            </tr>
+            <tr>
+              <td><code>GET /screenshot?path=C:/path/frame.png</code></td>
+              <td>Saves a 1920×1080 PNG screenshot directly from the OpenGL framebuffer.</td>
+            </tr>
+          </tbody>
+        </table>
+        <pre class="code-block"><code># Minimal Custom Python RL / Bot Loop Example
+import urllib.request, json, time
+
+def get_state():
+    return json.loads(urllib.request.urlopen("http://127.0.0.1:17575/state").read())
+
+def send_action(query):
+    return json.loads(urllib.request.urlopen(f"http://127.0.0.1:17575/action?{query}").read())
+
+# After running your own experiments, regenerate all CSVs, .xlsx, and dashboard charts:
+# python generate_experiment_assets.py</code></pre>
       </div>
     </section>
 
