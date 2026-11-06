@@ -1,71 +1,211 @@
-# Slay the Spire — Autonomous Ironclad AI Experiment
+# Slay the Spire — Autonomous Ironclad AI (`13m 21s` Speed Climber Victory)
 
-An in-process Java instrumentation agent ([`StsObserverAgent.java`](observer/StsObserverAgent.java)) and autonomous Python decision engine ([`play_ironclad.py`](play_ironclad.py)) that plays **Slay the Spire** (*The Ironclad*, Standard / Ascension 0) purely through legitimate UI and render-thread interactions—evolving across **21 full runs** and **12 engineering iterations (`v1.0` → `v2.3`)** to achieve a **13m 21s Speed Climber Victory** (`Score: 667`, `Final HP: 71/93`).
+[![Speedrun Clear Time: 13m 21s](https://img.shields.io/badge/Clear_Time-13m_21s_(801s)-00c853?style=for-the-badge&logo=steam)](https://yakiebi.github.io/slay-the-spire-ironclad-ai/)
+[![Achievement: SPEED_CLIMBER (<20m)](https://img.shields.io/badge/Achievement-SPEED__CLIMBER_(%3C20m)-ffb300?style=for-the-badge)](https://yakiebi.github.io/slay-the-spire-ironclad-ai/)
+[![Final HP: 71 / 93 HP](https://img.shields.io/badge/Final_HP-71%2F93_HP-e53935?style=for-the-badge)](https://yakiebi.github.io/slay-the-spire-ironclad-ai/)
+[![Final Score: 667 pts](https://img.shields.io/badge/Score-667_pts_(Light_Speed)-1e88e5?style=for-the-badge)](https://yakiebi.github.io/slay-the-spire-ironclad-ai/)
+[![Telemetry: 21 Runs / 354 Combats](https://img.shields.io/badge/Telemetry-21_Runs_%E2%80%A2_12_Iterations-8e24aa?style=for-the-badge)](https://docs.google.com/spreadsheets/d/1QaTf-T1JtgsI-HPnWZleRwBCAV4ktXWXr7AtER40xrI/edit)
+
+An in-process Java instrumentation agent ([`StsObserverAgent.java`](observer/StsObserverAgent.java)) and autonomous Python heuristic decision engine ([`play_ironclad.py`](play_ironclad.py)) that plays **Slay the Spire** (*The Ironclad*, Standard / Ascension 0) purely through legitimate UI and LibGDX render-thread interactions—evolving across **21 full runs** and **12 engineering iterations (`v1.0` → `v2.3`)** to achieve a **13m 21s (`801s`) Speedrun Victory** (`Score: 667`, `Final HP: 71/93`), automatically unlocking Steam's **`SPEED_CLIMBER`** (*Beat the game in under 20 minutes*), **`SHAPES`** (*Defeat Donu and Deca*), and **`RUBY`** (*Beat the game with The Ironclad*) achievements.
+
+<p align="center">
+  <img src="docs/assets/screenshots/99_ironclad_victory_screen.png" alt="Floor 51 Victory Banner (13m 21s)" width="49%" />
+  <img src="docs/assets/screenshots/100_final_score_screen.png" alt="Final Victory Score 667 (Light Speed)" width="49%" />
+</p>
+
+```text
+# Unmodified Slay the Spire JVM stdout on Floor 51 Victory (Run #21, Seed: 46N5WFFAZ8FY0):
+PLAYTIME: 801
+unlockAchievement: SHAPES
+unlockAchievement: SPEED_CLIMBER
+unlockAchievement: RUBY
+```
 
 ---
 
-## 🌐 Live Links
+## 🌐 Live Links & Telemetry Datasets
 
 - **Interactive GitHub Pages Dashboard**: [https://yakiebi.github.io/slay-the-spire-ironclad-ai/](https://yakiebi.github.io/slay-the-spire-ironclad-ai/)
-- **Live Google Spreadsheet (6 Tabs + Charts)**: [Slay the Spire — Ironclad AI Experiment Telemetry (21 Runs)](https://docs.google.com/spreadsheets/d/1QaTf-T1JtgsI-HPnWZleRwBCAV4ktXWXr7AtER40xrI/edit)
-- **Download Multi-Tab Excel/Google Sheets Workbook**: [`data/slay_the_spire_ironclad_experiment.xlsx`](data/slay_the_spire_ironclad_experiment.xlsx)
+- **Live Google Spreadsheet (6 Tabs + Native Charts)**: [Slay the Spire — Ironclad AI Experiment Telemetry (21 Runs)](https://docs.google.com/spreadsheets/d/1QaTf-T1JtgsI-HPnWZleRwBCAV4ktXWXr7AtER40xrI/edit)
+- **Download Multi-Tab Excel Workbook (`.xlsx`)**: [`data/slay_the_spire_ironclad_experiment.xlsx`](data/slay_the_spire_ironclad_experiment.xlsx)
 
 ---
 
-## 🧠 How the Bot Was Built (Methodology & System Architecture)
+## 🔥 Floor 50 Decision Log: Exploiting `Corruption` + `Snecko Eye` & Bypassing `Time Warp`
 
-Rather than relying on fragile computer-vision screen scraping (OCR/template matching) or requiring third-party mod loaders (*ModTheSpire* / *BaseMod* / *CommunicationMod*), we built a **zero-dependency, two-layer architecture** that works directly with an unmodified Steam installation of *Slay the Spire*:
+### 1. Donu & Deca Turn 1 & Turn 2 Execution (`run_history.log`, Run #21)
+Entering Floor 50 at **`93/93 HP`** with **`Snecko Eye`** (+2 card draw per turn, randomized card costs `0–3`), **`Bag of Preparation`** (+2 draw on Turn 1), **`Lantern`** (+1 Energy on Turn 1), **`Cursed Key`** (4 base Energy), and **`Mutagenic Strength`** (+3 Strength on Turn 1), the bot drew a 9-card opening hand against **Deca** (`250 HP`) and **Donu** (`250 HP`).
 
+Below is the actual console execution log from [`run_history.log`](run_history.log) (lines 13165–13223):
+
+```text
+[04:03:28] Saved screenshot: act3_boss_floor50.png
+[04:03:28] Floor 50 (MonsterRoomBoss) Turn 1: HP=93/93 Blk=0 E=6 Incoming=20 | Enemies: Deca(250+0HP, ATTACK_DEBUFF 10x2), Donu(250+0HP, BUFF -1x1)
+[04:03:28] Combat: Opening Potion [1] Dexterity Potion
+[04:03:28] Potion PopUp Open: Clicking top button (Use/Drink)
+[04:03:29] Floor 50 Turn 1: Playing [4] Corruption (cost=0, target=-1, score=398.0)
+[04:03:30] Floor 50 Turn 1: Playing [4] Feel No Pain (cost=0, target=-1, score=322.0)
+[04:03:31] Floor 50 Turn 1: Playing [3] Defend+ (cost=0, target=-1, score=275.0)
+[04:03:31] Floor 50 Turn 1: Playing [3] Uppercut+ (cost=1, target=1, score=216.0)
+[04:03:32] Floor 50 Turn 1: Playing [4] Heavy Blade+ (cost=1, target=1, score=253.4)
+[04:03:33] Floor 50 Turn 1: Playing [2] Blood for Blood (cost=1, target=1, score=207.8)
+[04:03:33] Floor 50 Turn 1: Playing [0] Feed (cost=0, target=1, score=172.2)
+[04:03:34] Floor 50 Turn 1: Playing [1] Bash+ (cost=1, target=1, score=164.5)
+[04:03:35] Floor 50 Turn 1: No playable cards left -> End Turn
+
+[04:03:39] Floor 50 (MonsterRoomBoss) Turn 2: HP=89/93 Blk=17 E=4 Incoming=26 | Enemies: Deca(250+0HP, DEFEND 10x2), Donu(122+0HP, ATTACK 13x2)
+[04:03:39] Floor 50 Turn 2: Playing [6] Shrug It Off+ (cost=0, target=-1, score=333.7)
+[04:03:40] Floor 50 Turn 2: Playing [2] Body Slam+ (cost=0, target=1, score=286.2)
+[04:03:40] Floor 50 Turn 2: Playing [3] Thunderclap (cost=1, target=-1, score=216.0)
+[04:03:42] Floor 50 Turn 2: Playing [3] Headbutt (cost=0, target=1, score=149.4)
+[04:03:42] Grid Select: Clicking card [0] Uppercut+ at (430.0, 705.2)
+[04:03:43] Floor 50 Turn 2: Playing [1] Pommel Strike+ (cost=3, target=1, score=142.0)
+[04:03:43] Floor 50 Turn 2: Playing [4] Heavy Blade (cost=0, target=1, score=179.8)
+[04:03:44] Floor 50 Turn 2: Playing [3] Uppercut+ (cost=0, target=1, score=536.5)  <-- +360 Lethal Bonus! Donu SLAIN on Turn 2!
+[04:03:44] Floor 50 Turn 2: Done playing cards -> End Turn
+
+[04:03:47] Floor 50 (MonsterRoomBoss) Turn 3: HP=89/93 Blk=0 E=4 Incoming=26 | Enemies: Deca(246+16HP, ATTACK_DEBUFF 13x2)
+[04:03:47] Floor 50 Turn 3: Playing [6] Uppercut+ (cost=0, target=0, score=258.0)
+[04:03:47] Floor 50 Turn 3: Playing [4] Defend (cost=0, target=-1, score=252.5)
+[04:03:48] Floor 50 Turn 3: Playing [0] Hemokinesis+ (cost=1, target=0, score=204.0)
+[04:03:49] Floor 50 Turn 3: Playing [0] Twin Strike+ (cost=3, target=0, score=146.0)
+[04:03:50] Floor 50 Turn 3: No playable cards left -> End Turn
+...
+[04:04:15] Floor 50 (MonsterRoomBoss) Turn 7: HP=65/93 Blk=0 E=4 Incoming=26 | Enemies: Deca(8+16HP, ATTACK_DEBUFF 13x2)
+[04:04:15] Floor 50 Turn 7: Playing [6] Uppercut+ (cost=0, target=0, score=536.5)
+[04:04:15] Floor 50 Turn 7: Playing [4] Headbutt (cost=0, target=0, score=509.4)   <-- Deca SLAIN! (+6 HP Burning Blood -> 71/93 HP)
+[04:07:35] ==========================================
+[04:07:35] VICTORY! Ironclad beat Slay the Spire!
+[04:07:35] ==========================================
 ```
-┌────────────────────────────────────────────────────────────────────────────┐
-│               Slay the Spire JVM Process (desktop-1.0.jar)                 │
-│                                                                            │
-│  ┌──────────────────────────────────────────────────────────────────────┐  │
-│  │  1. In-Process Java Agent (-javaagent:observer/sts_observer.jar)     │  │
-│  │     • Attaches via premain() before CardCrawlGame.main() starts      │  │
-│  │     • Hosts embedded HTTP Server on http://127.0.0.1:17575           │  │
-│  │     • /state      -> Serializes live JVM game objects to JSON        │  │
-│  │     • /action     -> Queues UI & combat actions on LibGDX thread     │  │
-│  │     • /screenshot -> Captures 1080p OpenGL framebuffer PNGs          │  │
-│  └──────────────────▲─────────────────────────────────┬─────────────────┘  │
-└─────────────────────┼─────────────────────────────────┼────────────────────┘
-                      │ HTTP GET /action                │ HTTP GET /state (JSON)
-                      │                                 ▼
-┌─────────────────────┴──────────────────────────────────────────────────────┐
-│               2. Python Decision Engine (play_ironclad.py)                 │
-│                                                                            │
-│  • Screen Router (step): Main Menu -> Neow -> Map -> Combat -> Rewards     │
-│  • Card Evaluator (evaluate_card_for_deck): Base tier + synergy bonuses    │
-│  • 3-Floor Lookahead Map Router (handle_map): HP/Gold/Act-aware pathing    │
-│  • 5-Stage Combat Planner (handle_combat): Setup -> Powers -> Debuffs ->   │
-│    Urgency-Weighted Block -> Universal Lethal & Thorns/Intangible Checks   │
-└────────────────────────────────────────────────────────────────────────────┘
-```
 
-### 1. Layer 1: In-Process Java Agent (`observer/StsObserverAgent.java`)
-- **JVM Attachment (`premain`)**: Loaded via the standard JVM flag `-javaagent:observer/sts_observer.jar`. No bytecode patching or `.jar` modification is needed.
-- **Exact State Introspection (`/state`)**: Reads live references from `CardCrawlGame`, `AbstractDungeon`, `AbstractPlayer`, `AbstractRoom`, and active screen objects (`GridCardSelectScreen`, `HandCardSelectScreen`, `CombatRewardScreen`, `CardRewardScreen`, `BossRelicSelectScreen`, `ShopScreen`, `DungeonMapScreen`) and serializes exact HP, block, energy, monster intents (`intentDmg`, `intentMultiAmt`), powers/debuffs, cards in hand (`canUse`, `costForTurn`, `damage`, `block`), relics, potions, and screen hitboxes (`cx`, `cy`, `w`, `h`).
-- **Thread-Safe Action Execution (`/action`)**: Because LibGDX's OpenGL context and *Slay the Spire*'s `GameActionManager` are single-threaded, all actions (`play_card`, `end_turn`, `click`, `hand_select`, `scroll`, `key`) are dispatched inside `Gdx.app.postRunnable(...)` so they execute deterministically on the main render loop without race conditions.
-- **Rules-Compliant Gameplay**: The agent never alters HP, gold, card values, or RNG seeds. Cards are queued into `AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(card, monster))`—the exact same queue populated when a human drags and releases a card.
-
-### 2. Layer 2: Iterative Failure-Driven Engineering (`play_ironclad.py`)
-We developed the Python bot through **12 closed-loop engineering iterations (`v1.0` → `v2.3`)** across **21 full runs**:
-1. **Run the bot autonomously** and record full combat/screen telemetry logs (`run_history.log` and Slay the Spire's `.run` JSON files).
-2. **Diagnose the exact bottleneck** whenever a run lost or got stuck on an unfamiliar UI modal (e.g., `GremlinMatchGame` 4x3 card grid, `Astrolabe` multi-card selection, `PotionPopUp.targetMode`, `Gambling Chip` optional discard).
-3. **Encode domain-specific counter-heuristics** for Bosses and Elites:
-   - **Slime Boss (Floor 16)**: Added a `+250` priority spike to attacks that push `Slime Boss` to `<= 70 HP`, interrupting its `35`-damage *Slam* with an immediate split.
-   - **Awakened One (Floor 50)**: Added a `Curiosity` check that suppresses non-essential Powers during Phase 1 so the boss doesn't gain `+2 Strength` per Power played.
-   - **Nemesis & Spiker (Act 3)**: Added `Intangible` awareness (capping expected attack damage at `1` per hit and prioritizing Block over 2-cost attacks) and `Thorns` self-damage protection.
-   - **Time Eater (Floor 50)**: Built `Time Warp` counter discipline (stopping non-Power plays at `6..8` when all incoming damage is blocked so the next turn has `4..6` plays, while pushing through `9..11` so the counter resets to `0/12` for the next turn) and `Haste` turn conservation (never wasting attacks or debuffs when `Time Eater` intents `BUFF` below `50% HP`).
+#### Why This Sequence Worked So Well
+1. **Explicit `Corruption` + `Snecko Eye` Priority Boost (`score=398.0`)**: Normally, `play_ironclad.py` holds back `Corruption` on Turn 1 of `>220 HP` Boss fights so it doesn't exhaust all block skills prematurely. However, when `has_relic(player, "Snecko Eye")` is true, `handle_combat` overrides that restriction and adds a **`+75.0` priority bonus** to `Corruption` because `Corruption` forces every Skill drawn by `Snecko Eye` (`Defend+`, `Shrug It Off+`) to **cost `0 Energy` regardless of `Confusion`**, while exhausting them triggers `Feel No Pain` (`+3 Block` per Skill).
+2. **Focus-Firing *Donu* (`target=1`)**: The target evaluator prioritizes *Donu* over *Deca* because *Donu* casts *Circle of Power* (`+3 Strength` to both bosses every even turn). Applying `Uppercut+` first stripped *Donu*'s `Artifact` stacks and enabled `Bash+` to land `Vulnerable`, dealing **128 damage on Turn 1** (`250 -> 122 HP`).
+3. **Turn 2 `Headbutt` → `Pommel Strike+` → `0-Cost Uppercut+` Lethal Chain (`score=536.5`)**:
+   - On Turn 2, `Shrug It Off+` (`cost=0` via `Corruption`) + `Feel No Pain` + `Horn Cleat` (`+14 Block` on Turn 2) built **31 Block**, turning the `0-cost Body Slam+` (`score=286.2`) into a 46-damage nuke before `Thunderclap` stripped *Donu*'s last `Artifact` and applied `Vulnerable`.
+   - When `Headbutt` (`cost=0`) triggered `GridCardSelectScreen` on the discard pile, `handle_grid_select` selected the highest-scored attack (`Uppercut+`) and placed it on top of the draw pile.
+   - Next, `Pommel Strike+` (`cost=3`, draws 2 cards) immediately drew that `Uppercut+` back into hand, where `Snecko Eye` rolled its cost to **`0 Energy`**!
+   - After `Heavy Blade` (`cost=0`), `Uppercut+` saw `eff_card_dmg >= Donu.currentHealth` and received the **`+360.0` universal lethal post-score bonus** (`score=536.5`), killing *Donu* on Turn 2 and turning the rest of the boss fight into a 1v1 against *Deca*.
 
 ---
 
-## 🚀 How to Install & Run the Bot Yourself
+### 2. How the Bot Bypasses *Time Eater*'s `Time Warp` Counter & `Haste` Turn
+In Runs #19 and #20, the bot reached Floor 50 against **Time Eater** (`456 HP`), exposing two classic AI traps:
+1. Ending a turn with the `Time Warp` counter at `9/12`, `10/12`, or `11/12`—which traps the bot into a 1-to-3 card turn on the following turn when *Time Eater* attacks for `45+` damage.
+2. Dumping multi-hit attacks and debuffs into *Time Eater* when it is below `50% HP` (`< 228 HP`) and showing `intent == "BUFF"` (*Haste*), which heals *Time Eater* back to `228 HP` and cleanses all debuffs.
+
+Here is the exact heuristic added in `v2.3` ([`play_ironclad.py`](play_ironclad.py#L1268-L1282)) that solved both mechanics:
+
+```python
+# Time Eater specific card-count & Haste discipline (play_ironclad.py, lines 1268-1282):
+if time_eater and not is_lethal_hit:
+    # 1. Never spam low-impact 0-cost cards into the Time Warp 12-card counter
+    if cid in ("Anger", "Madness"):
+        continue
+
+    # 2. On Time Eater's <50% HP Haste (BUFF) turn, it heals back to 228 HP and clears all debuffs!
+    #    Do NOT waste Attacks, debuffs, or draw/exhaust cards into Haste — only play permanent Powers or Limit Break!
+    if time_eater.get("intent") == "BUFF" and time_eater.get("currentHealth", 999) < 228:
+        if ctype != "POWER" and cid != "Limit Break":
+            continue
+
+    # 3. Time Warp Counter Discipline:
+    #    - Stop early at 6..8 cards ONLY when all incoming damage is already blocked (unblocked_dmg == 0),
+    #      leaving a clean 4..6 card allowance for the next turn.
+    #    - NEVER stop at 9, 10, or 11 if we have playable cards — push through to 12/12 on the current turn
+    #      so the counter resets to 0/12 for the start of the next turn!
+    if 6 <= time_warp_cnt <= 8 and unblocked_dmg == 0 and ctype != "POWER" and cid != "Limit Break":
+        continue
+```
+
+---
+
+## 🔧 Setup & Hooking Guide: Compiling & Attaching `StsObserverAgent.java` to the LibGDX Render Thread
+
+If you want to reproduce, fork, or build your own agent on top of *Slay the Spire*, the hardest engineering challenge is that **LibGDX (`com.badlogic.gdx`) and Slay the Spire's `GameActionManager` are strictly single-threaded**. Calling game methods or reading OpenGL framebuffers directly from an external thread (such as an HTTP server thread) causes immediate race conditions, `NullPointerException`s inside `CardGroup`, or fatal `GLException: No OpenGL context found in the current thread` crashes.
+
+Here is how [`observer/StsObserverAgent.java`](observer/StsObserverAgent.java) solves this cleanly without *ModTheSpire* or bytecode patching.
+
+### 1. How the `-javaagent` Hook Works
+1. **JVM `premain` Entrypoint**: Before `com.megacrit.cardcrawl.desktop.DesktopLauncher.main()` starts, the JVM invokes `StsObserverAgent.premain(String agentArgs, Instrumentation inst)`, which spins up a lightweight daemon `com.sun.net.httpserver.HttpServer` on `127.0.0.1:17575`.
+2. **Bridging HTTP Threads to the LibGDX Render Loop via `Gdx.app.postRunnable` + `CountDownLatch`**:
+   Whenever an HTTP request arrives on `/action` or `/screenshot`, the HTTP handler schedules a `Runnable` onto LibGDX's main render loop via `Gdx.app.postRunnable(...)` and awaits a `CountDownLatch` so the action executes **synchronously between frames** on the exact thread that owns the OpenGL context and `AbstractDungeon.actionManager`:
+
+```java
+// Excerpt from observer/StsObserverAgent.java (lines 186-227)
+// Safely queuing a card play onto GameActionManager.cardQueue from an HTTP worker thread:
+final int cardIndex = Integer.parseInt(q.get("cardIndex"));
+final int targetIndex = q.containsKey("targetIndex") ? Integer.parseInt(q.get("targetIndex")) : -1;
+final CountDownLatch latch = new CountDownLatch(1);
+final String[] status = new String[]{"ok"};
+
+Gdx.app.postRunnable(new Runnable() {
+    @Override
+    public void run() {
+        try {
+            AbstractPlayer p = AbstractDungeon.player;
+            AbstractCard card = p.hand.group.get(cardIndex);
+            AbstractMonster target = (targetIndex >= 0)
+                    ? AbstractDungeon.getCurrRoom().monsters.monsters.get(targetIndex)
+                    : null;
+
+            if (!card.canUse(p, target)) {
+                status[0] = "cannot_use:" + card.cantUseMessage;
+                return;
+            }
+            // Move in-game cursor to the target hitbox and push onto the official cardQueue
+            if (target != null && target.hb != null) {
+                Gdx.input.setCursorPosition(Math.round(target.hb.cX), Settings.HEIGHT - Math.round(target.hb.cY));
+            }
+            AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(card, target));
+        } catch (Throwable t) {
+            status[0] = "err:" + t.toString();
+        } finally {
+            latch.countDown();
+        }
+    }
+});
+latch.await(2, TimeUnit.SECONDS);
+```
+
+3. **Coordinate-Space Translation & 3-Frame Click Injection**:
+   *Slay the Spire* hitboxes (`hb.cX`, `hb.cY`) use **bottom-left origin** (`y = 0` at bottom, `y = 1080` at top), whereas `Gdx.input.setCursorPosition(screenX, screenY)` uses **top-left window origin** (`screenY = Settings.HEIGHT - Math.round(cy)`). To ensure every button/hitbox registers hover before click, `cmd=click` posts three sequential runnables across frames (`hover` → `50ms` → `InputHelper.touchDown = true` → `50ms` → `InputHelper.touchUp = true`).
+
+### 2. Compiling `sts_observer.jar` from Source
+A pre-compiled [`observer/sts_observer.jar`](observer/sts_observer.jar) is already included in the repository. If you modify [`observer/StsObserverAgent.java`](observer/StsObserverAgent.java), you can recompile it against *Slay the Spire*'s `desktop-1.0.jar` (which already bundles LibGDX and Gson) in one command:
+
+```powershell
+# Option A: Use the included build script
+.\build_observer_jar.bat
+
+# Option B: Manual javac + jar commands (requires JDK 8+)
+cd observer
+$STS_JAR = "C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\desktop-1.0.jar"
+
+# 1. Compile targeting Java 8 bytecode (since Slay the Spire's bundled JRE is Java 8)
+javac -source 8 -target 8 -cp "$STS_JAR" StsObserverAgent.java
+
+# 2. Package with MANIFEST.MF (which declares Premain-Class: StsObserverAgent)
+jar cfm sts_observer.jar MANIFEST.MF StsObserverAgent*.class
+```
+
+Where [`observer/MANIFEST.MF`](observer/MANIFEST.MF) contains:
+```text
+Manifest-Version: 1.0
+Premain-Class: StsObserverAgent
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+```
+
+---
+
+## 🚀 How to Install & Run the Bot (3 Steps)
 
 ### Prerequisites
 1. **Slay the Spire** installed via Steam (default path: `C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire`).
    - *Note*: Steam's *Slay the Spire* comes bundled with its own Java 8 runtime (`jre\bin\java.exe`), so you do **not** even need Java installed globally to run the prebuilt `sts_observer.jar`!
-2. **Python 3.8+** (uses only the Python standard library: `urllib.request`, `json`, `time`, `re`, `os`—no `pip install` required to run the bot!).
+2. **Python 3.8+** (uses only the Python standard library: `urllib.request`, `json`, `time`, `re`, `os`—no `pip install` required!).
 
 ### Step 1: Clone the Repository
 ```powershell
@@ -74,10 +214,10 @@ cd slay-the-spire-ironclad-ai
 ```
 
 ### Step 2: Launch *Slay the Spire* with the Observer Agent Attached
-Make sure Steam is running, then either double-click **`launch_sts_with_agent.bat`** or run:
+Make sure Steam is running, then double-click **`launch_sts_with_agent.bat`** or run:
 
 ```powershell
-# If Slay the Spire is in the default Steam folder:
+# Default Steam path:
 .\launch_sts_with_agent.bat
 
 # Or if installed in a custom SteamLibrary folder:
@@ -87,7 +227,7 @@ $env:STS_DIR = "D:\SteamLibrary\steamapps\common\SlayTheSpire"
 
 *(Under the hood, this runs `.\jre\bin\java.exe -Xmx1G -javaagent:...\observer\sts_observer.jar -jar desktop-1.0.jar` and starts the local bridge on `http://127.0.0.1:17575`.)*
 
-You can verify the bridge is live at any time by visiting [http://127.0.0.1:17575/state](http://127.0.0.1:17575/state) in your browser.
+Verify the bridge is live by opening [http://127.0.0.1:17575/state](http://127.0.0.1:17575/state) in your browser.
 
 ### Step 3: Start the Autonomous Ironclad Bot
 In a second terminal window, run:
@@ -103,74 +243,35 @@ The bot will automatically navigate from the Main Menu (or resume an in-progress
 ## 🛠️ How to Edit, Customize, or Train Your Own Bot
 
 ### 1. Tuning Card Draft & Shop Priorities (`play_ironclad.py`)
-Open [`play_ironclad.py`](play_ironclad.py) and look at:
+Open [`play_ironclad.py`](play_ironclad.py) and inspect:
 - **`CARD_SCORES` (lines 70–160)**: Base tier values (`0–100`) for every Ironclad and Colorless card. Increase a card's score to draft it more aggressively, or lower it below `56` (the skip threshold) to skip it unless upgraded/synergistic.
-- **`evaluate_card_for_deck(card, state)` (lines 195–275)**: Dynamic synergy adjustments based on your current `masterDeck` and `relics`. For example, you can add custom rules for a **Barricade + Entrench + Body Slam** archetype or a **Rupture + Hemokinesis / Combust** self-damage archetype:
-
-```python
-# Example: Boost Entrench & Impervious when Barricade or Calipers is in the deck/relics
-if cid in ("Entrench", "Impervious", "Body Slam"):
-    if any(c.get("id") == "Barricade" for c in deck) or has_relic(player, "Calipers"):
-        score += 25
-```
+- **`evaluate_card_for_deck(card, state)` (lines 195–275)**: Dynamic synergy adjustments based on your current `masterDeck` and `relics`.
 
 ### 2. Modifying Combat Card Sequencing (`handle_combat` in `play_ironclad.py`)
-In [`play_ironclad.py`](play_ironclad.py), `handle_combat(self, st)` loops over every playable card in `player["hand"]` (`canUse == True`) and computes a priority score `sc`:
-- **To add a new boss/elite counter-strategy**, inspect `alive_monsters` (`id`, `name`, `currentHealth`, `currentBlock`, `intent`, `intentDmg`, `powers`) and adjust `sc` or `continue` to skip a card.
-- **To change how aggressively the bot blocks vs. attacks**, adjust `urgency_bonus` and `base_blk_sc` in the `# 4. Block cards` section (around line 1370).
+`handle_combat(self, st)` loops over every playable card in `player["hand"]` (`canUse == True`) and computes a priority score `sc` across 5 stages:
+1. **0-Cost Setup / Energy / Upgrade (`250–400`)**: `Apotheosis`, `Offering`, `Seeing Red`, `Armaments`, `Battle Trance`, `Rage`, `Flex`.
+2. **Powers & Scaling (`235 + base`)**: `Corruption` (`+75` with `Snecko Eye`), `Feel No Pain`, `Demon Form`, `Inflame`, `Metallicize`, `Spot Weakness`, `Limit Break`.
+3. **Debuffs Before Attacks (`238–285`)**: `Shockwave`, `Disarm`, `Clothesline`, `Uppercut`, `Bash`, `Thunderclap`, `Intimidate`.
+4. **Urgency-Weighted Block (`135–310+`)**: Scales with `min(blk, unblocked_dmg) * 7.5` plus a `+65` urgency boost when `unblocked_dmg >= 12`, `HP <= 50`, or in Boss fights.
+5. **Universal Post-Scoring (`+360` Lethal / `+250` Fatal `Feed`)**: Checks `eff_card_dmg * hits >= enemy_hp + enemy_block` across all attacks, while penalizing suicide into `Thorns` (`Spiker`) or 2-cost attacks into `Intangible` (`Nemesis`).
 
 ### 3. Modifying Map Routing (`handle_map` in `play_ironclad.py`)
-`score_node(n, depth)` inside `handle_map` evaluates a **3-floor lookahead tree** (`s += 0.65 * max(child_scores)`) over the dungeon map nodes (`R` Rest, `E` Elite, `$` Shop, `T` Treasure, `?` Event, `M` Monster). You can edit node weights to hunt more Elites (e.g., for High Ascension or Black Star runs) or route toward the Burning Elite (`n.get("hasEmeraldKey") == True`) for Act 4 Heart runs!
+`score_node(n, depth)` inside `handle_map` evaluates a **3-floor lookahead tree** (`s += 0.65 * max(child_scores)`) over the dungeon map nodes (`R` Rest, `E` Elite, `$` Shop, `T` Treasure, `?` Event, `M` Monster). You can edit node weights to hunt more Elites or route toward the Burning Elite (`n.get("hasEmeraldKey") == True`) for Act 4 Heart runs.
 
-### 4. Building Your Own RL / Imitation Learning / LLM Agent Using the HTTP API
+### 4. Building Your Own RL / Imitation Learning / LLM Agent via the HTTP JSON API
 Because `StsObserverAgent` exposes a language-agnostic HTTP JSON API on `http://127.0.0.1:17575`, you can write your own agent in **Python (PyTorch / Gymnasium / Stable-Baselines3)**, **TypeScript**, **Rust**, or **Go**, or connect an **LLM agent**:
 
 | Endpoint | Method | Parameters / Description |
 | :--- | :---: | :--- |
 | `/state` | `GET` | Returns full JSON snapshot of `mode`, `dungeon`, `room`, `actionManager`, `player` (HP, energy, hand, deck, relics, potions, powers), `monsters` (HP, intent, powers), `overlay`, `map`, `shop`, `event`, `combatRewards`, `cardReward`, `bossRelics`, `gridSelect`, `handSelect`, `gameOver`. |
-| `/action?cmd=play_card&index=<i>&target=<m>` | `GET` | Plays hand card at index `i` targeting monster index `m` (`-1` for self/AoE/untargeted cards). |
-| `/action?cmd=end_turn` | `GET` | Clicks the End Turn button (`AbstractDungeon.overlayMenu.endTurnButton.disable(true)`). |
-| `/action?cmd=click&x=<cx>&y=<cy>` | `GET` | Moves cursor to `(x, y)` in 1920x1080 space and performs a left-click on the LibGDX render thread. |
-| `/action?cmd=hand_select&index=<i>` | `GET` | Selects card `i` in `HandCardSelectScreen` (Armaments, True Grit, Dual Wield, Gambling Chip). |
-| `/action?cmd=scroll&dir=<up\|down>&amount=<n>` | `GET` | Scrolls the Dungeon Map or Grid Select screen. |
-| `/action?cmd=key&key=<ESC\|RETURN\|SPACE>` | `GET` | Presses a keyboard key inside LibGDX. |
-| `/screenshot?path=<abs_path.png>` | `GET` | Captures a 1920x1080 PNG screenshot directly from the OpenGL framebuffer. |
+| `/action?cmd=play_card&cardIndex=<i>&targetIndex=<m>` | `GET` | Plays hand card at `cardIndex` targeting monster `targetIndex` (`-1` for self/AoE/untargeted cards). |
+| `/action?cmd=end_turn` | `GET` | Clicks the End Turn button (`EndTurnButton.hb.clicked = true`). |
+| `/action?cmd=click&x=<cx>&y=<cy>` | `GET` | Moves cursor to `(x, y)` in 1920×1080 space and performs a 3-stage hover/touchDown/touchUp click on the LibGDX thread. |
+| `/action?cmd=hand_select&cardIndex=<i>` | `GET` | Selects card `i` in `HandCardSelectScreen` (Armaments, True Grit, Dual Wield, Gambling Chip). |
+| `/action?cmd=scroll&dir=<up\|down>&steps=<n>` | `GET` | Scrolls the Dungeon Map or Grid Select screen (`InputHelper.scrolledUp / scrolledDown`). |
+| `/screenshot?path=<abs_path.png>` | `GET` | Captures a 1920×1080 PNG screenshot directly from the OpenGL framebuffer (`ScreenUtils.getFrameBufferPixmap`). |
 
-#### Minimal Custom Agent Template (Python)
-```python
-import urllib.request, json, time
-
-BASE = "http://127.0.0.1:17575"
-
-def get_state():
-    with urllib.request.urlopen(f"{BASE}/state") as r:
-        return json.loads(r.read().decode("utf-8"))
-
-def act(query):
-    with urllib.request.urlopen(f"{BASE}/action?{query}") as r:
-        return json.loads(r.read().decode("utf-8"))
-
-while True:
-    state = get_state()
-    if state["room"].get("phase") == "COMBAT" and state["actionManager"].get("phase") == "WAITING_ON_USER":
-        playable = [c for c in state["player"]["hand"] if c["canUse"]]
-        if playable:
-            card = playable[0]
-            target = 0 if card["target"] in ("ENEMY", "SELF_AND_ENEMY") else -1
-            act(f"cmd=play_card&index={card['index']}&target={target}")
-        else:
-            act("cmd=end_turn")
-    time.sleep(0.4)
-```
-
-### 5. Recompiling the Java Agent (`observer/StsObserverAgent.java`)
-If you add new fields to `/state` or new commands to `/action` in [`observer/StsObserverAgent.java`](observer/StsObserverAgent.java), recompile `observer/sts_observer.jar` using JDK 8+:
-
-```powershell
-.\build_observer_jar.bat
-```
-
-### 6. Regenerating the Telemetry Spreadsheets & GitHub Pages Data
+### 5. Regenerating the Telemetry Spreadsheets & GitHub Pages Data
 After running your own experiments, run [`generate_experiment_assets.py`](generate_experiment_assets.py) to parse all `.run` files from your *Slay the Spire* `runs\IRONCLAD` folder and automatically update [`data/`](data/), [`docs/data/`](docs/data/), and [`docs/data.js`](docs/data.js):
 
 ```powershell
@@ -184,7 +285,7 @@ python generate_experiment_assets.py
 - **Live Google Spreadsheet (in Google Drive)**: [Slay the Spire — Ironclad AI Experiment Telemetry (21 Runs)](https://docs.google.com/spreadsheets/d/1QaTf-T1JtgsI-HPnWZleRwBCAV4ktXWXr7AtER40xrI/edit)
 - **Multi-Tab OpenXML Workbook (`.xlsx`)**: [`data/slay_the_spire_ironclad_experiment.xlsx`](data/slay_the_spire_ironclad_experiment.xlsx)
 - **Individual CSV Datasets**:
-  - [`data/runs_summary.csv`](data/runs_summary.csv) — All 21 runs
+  - [`data/runs_summary.csv`](data/runs_summary.csv) — All 21 runs (floor reached, outcome, playtime, deck size, relics, gold, killer)
   - [`data/card_pick_rates.csv`](data/card_pick_rates.csv) — All 69 cards offered across 1,018 reward slots
   - [`data/relics_obtained.csv`](data/relics_obtained.csv) — All 63 relics obtained/offered
   - [`data/iterations_changelog.csv`](data/iterations_changelog.csv) — All 12 AI engineering iterations (`v1.0` → `v2.3`)

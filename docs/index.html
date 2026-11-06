@@ -14,7 +14,8 @@
     <div class="container">
       <div class="hero-badge-row">
         <span class="badge badge-victory">● Victory Achieved (Floor 51)</span>
-        <span class="badge badge-ironclad">The Ironclad • Ascension 0</span>
+        <span class="badge badge-gold">⚡ 13m 21s Speedrun • SPEED_CLIMBER (&lt;20m) Unlocked</span>
+        <span class="badge badge-ironclad">The Ironclad • 71/93 HP • Score: 667</span>
         <span class="badge badge-gold">21 Full Runs • 12 AI Iterations • 354 Combats</span>
       </div>
       <h1>Slay the Spire — Autonomous Ironclad AI Experiment</h1>
@@ -180,9 +181,31 @@
           </ul>
         </div>
       </div>
-    </section>
+      <div class="chart-card" style="margin-top:1.25rem;">
+        <h3>Floor 50 Boss Decision Log: Donu &amp; Deca Turn 1 &amp; Turn 2 Execution + Time Warp Bypass</h3>
+        <p class="chart-desc">Actual console output from <code>run_history.log</code> (Run #21, Floor 50) showing how the bot exploited <code>Corruption + Snecko Eye + Feel No Pain</code> and chained <code>Headbutt → Pommel Strike+ → 0-cost Uppercut+</code> (+360 lethal bonus) to kill <em>Donu</em> on Turn 2:</p>
+        <pre class="code-block"><code>[04:03:28] Floor 50 (MonsterRoomBoss) Turn 1: HP=93/93 Blk=0 E=6 Incoming=20 | Enemies: Deca(250+0HP, ATTACK_DEBUFF 10x2), Donu(250+0HP, BUFF -1x1)
+[04:03:28] Combat: Opening Potion [1] Dexterity Potion
+[04:03:29] Floor 50 Turn 1: Playing [4] Corruption (cost=0, target=-1, score=398.0)     # +75 Snecko Eye synergy override!
+[04:03:30] Floor 50 Turn 1: Playing [4] Feel No Pain (cost=0, target=-1, score=322.0)
+[04:03:31] Floor 50 Turn 1: Playing [3] Defend+ (cost=0, target=-1, score=275.0)
+[04:03:31] Floor 50 Turn 1: Playing [3] Uppercut+ (cost=1, target=1, score=216.0)      # Strips Donu's Artifact
+[04:03:32] Floor 50 Turn 1: Playing [4] Heavy Blade+ (cost=1, target=1, score=253.4)
+[04:03:33] Floor 50 Turn 1: Playing [2] Blood for Blood (cost=1, target=1, score=207.8)
+[04:03:33] Floor 50 Turn 1: Playing [0] Feed (cost=0, target=1, score=172.2)
+[04:03:34] Floor 50 Turn 1: Playing [1] Bash+ (cost=1, target=1, score=164.5)          # Lands Vulnerable -> Donu down to 122 HP!
 
-    <!-- ITERATION CHANGELOG TIMELINE -->
+[04:03:39] Floor 50 (MonsterRoomBoss) Turn 2: HP=89/93 Blk=17 E=4 Incoming=26 | Enemies: Deca(250+0HP, DEFEND 10x2), Donu(122+0HP, ATTACK 13x2)
+[04:03:39] Floor 50 Turn 2: Playing [6] Shrug It Off+ (cost=0, target=-1, score=333.7) # 0-cost via Corruption -> 31 Block total
+[04:03:40] Floor 50 Turn 2: Playing [2] Body Slam+ (cost=0, target=1, score=286.2)     # 46-damage Body Slam+ for 0 Energy!
+[04:03:40] Floor 50 Turn 2: Playing [3] Thunderclap (cost=1, target=-1, score=216.0)
+[04:03:42] Floor 50 Turn 2: Playing [3] Headbutt (cost=0, target=1, score=149.4)
+[04:03:42] Grid Select: Clicking card [0] Uppercut+ at (430.0, 705.2)                  # Places Uppercut+ on top of draw pile
+[04:03:43] Floor 50 Turn 2: Playing [1] Pommel Strike+ (cost=3, target=1, score=142.0) # Draws Uppercut+ -> Snecko rolls cost=0!
+[04:03:43] Floor 50 Turn 2: Playing [4] Heavy Blade (cost=0, target=1, score=179.8)
+[04:03:44] Floor 50 Turn 2: Playing [3] Uppercut+ (cost=0, target=1, score=536.5)      # +360 Lethal Bonus! Donu SLAIN on Turn 2!</code></pre>
+      </div>
+    </section>
     <section class="section" id="iterations">
       <div class="section-header">
         <div>
@@ -349,20 +372,20 @@ python play_ironclad.py</code></pre>
               <td>Returns full JSON state: <code>mode</code>, <code>dungeon</code> (floor, act, screen), <code>room</code>, <code>player</code> (HP, block, energy, hand, masterDeck, relics, potions, powers), <code>monsters</code> (HP, block, intent, intentDmg, powers), and UI hitboxes.</td>
             </tr>
             <tr>
-              <td><code>GET /action?cmd=play_card&amp;index=0&amp;target=0</code></td>
-              <td>Queues hand card <code>index</code> onto <code>GameActionManager.cardQueue</code> targeting monster <code>target</code> (or <code>-1</code> for self/AoE).</td>
+              <td><code>GET /action?cmd=play_card&amp;cardIndex=0&amp;targetIndex=0</code></td>
+              <td>Queues hand card <code>cardIndex</code> onto <code>GameActionManager.cardQueue</code> targeting monster <code>targetIndex</code> (or <code>-1</code> for self/AoE).</td>
             </tr>
             <tr>
               <td><code>GET /action?cmd=end_turn</code></td>
-              <td>Triggers <code>endTurnButton.disable(true)</code> to end the player's combat turn cleanly.</td>
+              <td>Triggers <code>EndTurnButton.hb.clicked = true</code> to end the player's combat turn cleanly.</td>
             </tr>
             <tr>
               <td><code>GET /action?cmd=click&amp;x=960&amp;y=540</code></td>
-              <td>Moves cursor to <code>(x, y)</code> in 1920×1080 space and performs a left-click on the LibGDX thread.</td>
+              <td>Moves cursor to <code>(x, y)</code> in 1920×1080 space and performs a 3-frame hover/touchDown/touchUp click on the LibGDX thread.</td>
             </tr>
             <tr>
-              <td><code>GET /action?cmd=hand_select&amp;index=0</code></td>
-              <td>Selects a card in <code>HandCardSelectScreen</code> (Armaments, True Grit, Dual Wield, Gambling Chip).</td>
+              <td><code>GET /action?cmd=hand_select&amp;cardIndex=0</code></td>
+              <td>Selects card <code>cardIndex</code> in <code>HandCardSelectScreen</code> (Armaments, True Grit, Dual Wield, Gambling Chip).</td>
             </tr>
             <tr>
               <td><code>GET /screenshot?path=C:/path/frame.png</code></td>
@@ -370,7 +393,12 @@ python play_ironclad.py</code></pre>
             </tr>
           </tbody>
         </table>
-        <pre class="code-block"><code># Minimal Custom Python RL / Bot Loop Example
+        <pre class="code-block"><code># Compiling StsObserverAgent.java against Slay the Spire's desktop-1.0.jar (JDK 8+):
+cd observer
+javac -source 8 -target 8 -cp "C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\desktop-1.0.jar" StsObserverAgent.java
+jar cfm sts_observer.jar MANIFEST.MF StsObserverAgent*.class
+
+# Minimal Custom Python RL / Bot Loop Example:
 import urllib.request, json, time
 
 def get_state():
